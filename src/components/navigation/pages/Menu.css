@@ -1,0 +1,37 @@
+.nav{
+  background-color: #2d6187
+}
+
+.HomeMenu, .HomeMenu:visited, .HomeMenu:hover, .HomeMenu:active {
+  -webkit-backface-visibility:hidden;
+          backface-visibility:hidden;
+	position:relative;
+  transition:0.5s color ease;
+	text-decoration:none;
+	color:#81b3d2;
+	font-size:1.2em;
+}
+
+.HomeMenu:hover{
+  color: #eeeeee;
+}
+
+.HomeMenu:after{
+  content: "";
+  transition:0.5s all ease;
+  -webkit-backface-visibility:hidden;
+          backface-visibility:hidden;
+  position:absolute;
+  bottom:-0.25em;
+  height:5px;
+  height:0.35rem;
+  width:0;
+  background:#eeeeee;
+  left:50%;
+  -webkit-transform:translateX(-50%);
+          transform:translateX(-50%);
+}
+
+.HomeMenu:hover:after{
+  width:100%;
+}
