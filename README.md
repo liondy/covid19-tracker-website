@@ -11,7 +11,7 @@ An insight about Javascript
 # Installed Library
 
 Before you can see the beauty of the webpage, please look at [package.json](https://github.com/liondy/covid19-tracker-website/blob/master/package.json) for the installed library.\
-Here's all script to install. You can simply run `npm install` or use this script:\
+Here's all script to install. You can simply run `npm install` or use this script:
 
 ```
 npm install axios
@@ -22,7 +22,7 @@ npm install --save react-router-dom
 
 Axios: to process API \
 Bootstrap & Reactstrap: enabling React to use Bootstrap via Reactstrap Component \
-React Router Dom: enabling React to have multipage. \
+React Router Dom: enabling React to have multipage.
 
 ## Run Project
 
