@@ -34,7 +34,7 @@ function Menu() {
   ];
   const navBar = navbar.map((curr) => {
     return (
-      <NavItem className="ml-3">
+      <NavItem className="ml-5">
         <Link to={curr.path} style={{ textDecoration: "none" }}>
           <a className="HomeMenu" rel="noopener noreferrer" style={curr.style}>
             {curr.menu}

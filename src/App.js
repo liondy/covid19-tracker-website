@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import routes from "./config/Routes";
-import Footer from "./components/layout/footer/Footer";
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
           </Switch>
         </BrowserRouter>
       </React.Fragment>
-      <Footer />
     </>
   );
 }
