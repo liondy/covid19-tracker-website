@@ -8,10 +8,10 @@ function Menu() {
   const location = useLocation();
   let navbar = [
     {
-      path: "/indonesia",
-      menu: "Indonesia",
+      path: "/country",
+      menu: "Negara",
       style:
-        location.pathname === "/indonesia"
+        location.pathname === "/country"
           ? { color: "#eee" }
           : { color: "#81b3d2" },
     },

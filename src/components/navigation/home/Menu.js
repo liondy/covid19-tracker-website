@@ -7,16 +7,16 @@ function Menu() {
     <Container fluid>
       <Row className="justify-content-center">
         <Col xs="12" md="4">
-          <Link to="indonesia" style={{ textDecoration: "none" }}>
+          <Link to="country" style={{ textDecoration: "none" }}>
             <a className="HomeMenu" rel="noopener noreferrer">
-              Lihat Status di Indonesia
+              Lihat Status Negara
             </a>
           </Link>
         </Col>
         <Col xs="12" md="4">
           <Link to="province" style={{ textDecoration: "none" }}>
             <a className="HomeMenu" rel="noopener noreferrer">
-              Lihat Status Provinsi di Indonesia
+              Lihat Status Provinsi
             </a>
           </Link>
         </Col>

@@ -1,8 +1,8 @@
-import "./Indonesia.css";
+import "./Country.css";
 import Header from "../../components/layout/header/pages/Pages";
 import Footer from "../../components/layout/footer/Footer";
 
-function Indonesia() {
+function Country() {
   return (
     <>
       <Header />
@@ -12,4 +12,4 @@ function Indonesia() {
   );
 }
 
-export default Indonesia;
+export default Country;
