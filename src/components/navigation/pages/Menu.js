@@ -54,7 +54,7 @@ function Menu() {
   });
   return (
     <Navbar className="nav" dark expand="md">
-      <NavbarBrand href="/" className="mr-auto p-2">
+      <NavbarBrand href="/" className="p-2">
         <Link to="/">
           <img src={logo} alt="logo" className="img-fluid" width="50%" />
         </Link>

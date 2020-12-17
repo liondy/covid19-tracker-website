@@ -1,5 +1,5 @@
 import React from "react";
-import { Dropdown } from "semantic-ui-react";
+import { Divider, Dropdown } from "semantic-ui-react";
 
 const countryOptions = [
   { key: "af", value: "af", text: "Afghanistan" },
@@ -29,13 +29,14 @@ const countryOptions = [
 
 function DropdownCustom() {
   return (
-    <Dropdown
-      placeholder="Pilih Negaramu"
-      fluid
-      search
-      selection
-      options={countryOptions}
-    />
+    <div className="text-center mt-5">
+      <Dropdown
+        placeholder="----- Pilih Negaramu -----"
+        search
+        selection
+        options={countryOptions}
+      />
+    </div>
   );
 }
 
