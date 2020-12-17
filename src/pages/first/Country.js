@@ -1,12 +1,13 @@
 import "./Country.css";
 import Header from "../../components/layout/header/pages/Pages";
 import Footer from "../../components/layout/footer/Footer";
+import DropdownCustom from "../../components/dropdowns/DropdownCustom";
 
 function Country() {
   return (
     <>
       <Header />
-      {/* Place content here */}
+      <DropdownCustom />
       <Footer />
     </>
   );

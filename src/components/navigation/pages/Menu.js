@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Menu.css";
 import logo from "../../logo/covid.svg";
 import { Link, useLocation } from "react-router-dom";
-import { Navbar, NavbarBrand, NavItem } from "reactstrap";
+import {
+  Nav,
+  Navbar,
+  NavbarBrand,
+  NavItem,
+  Collapse,
+  NavbarToggler,
+} from "reactstrap";
 
 function Menu() {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
   const location = useLocation();
   let navbar = [
     {
@@ -44,13 +53,18 @@ function Menu() {
     );
   });
   return (
-    <Navbar className="nav">
+    <Navbar className="nav" dark expand="md">
       <NavbarBrand href="/" className="mr-auto p-2">
         <Link to="/">
           <img src={logo} alt="logo" className="img-fluid" width="50%" />
         </Link>
       </NavbarBrand>
-      {navBar}
+      <NavbarToggler onClick={toggle} />
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className="ml-auto" navbar>
+          {navBar}
+        </Nav>
+      </Collapse>
     </Navbar>
   );
 }
