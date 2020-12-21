@@ -18,6 +18,7 @@ npm install axios
 npm install --save bootstrap
 npm install --save reactstrap react react-dom
 npm install --save react-router-dom
+npm install semantic-ui-react semantic-ui-css
 ```
 
 Axios: to process API \
