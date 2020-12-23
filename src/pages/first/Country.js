@@ -32,7 +32,7 @@ function Country() {
   return (
     <>
       <Header />
-      <DropdownCustom data={countries} onChange={changeCountry} />
+      <DropdownCustom country data={countries} onChange={changeCountry} />
       {isLoading ? <div>Loading...</div> : <div>{console.log(data)}</div>}
       <Footer />
     </>
