@@ -15,10 +15,12 @@ Here's all script to install. You can simply run `npm install` or use this scrip
 
 ```
 npm install axios
-npm install --save bootstrap
-npm install --save reactstrap react react-dom
-npm install --save react-router-dom
+npm install bootstrap
+npm install reactstrap react react-dom
+npm install react-router-dom
 npm install semantic-ui-react semantic-ui-css
+npm install date-fns
+npm install @wojtekmaj/react-daterange-picker
 ```
 
 Axios: to process API \
