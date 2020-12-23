@@ -5,8 +5,8 @@ function DropdownCustom({ country, data, onChange }) {
   const dataSource = [];
   if (country) {
     dataSource.push({
-      key: "GLOB",
-      value: "global",
+      key: "WL",
+      value: "world",
       text: "Global",
     });
     for (let i in data) {
@@ -19,7 +19,7 @@ function DropdownCustom({ country, data, onChange }) {
   } else {
   }
   return (
-    <div className="text-center mt-5">
+    <div className="mt-5">
       <Dropdown
         placeholder="Global"
         search

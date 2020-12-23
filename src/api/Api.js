@@ -10,6 +10,17 @@ export const getSummaryData = async () => {
   }
 };
 
+export const getCountriesData = async (country, start, end) => {
+  try {
+    const response = await API.get(
+      "country/" + country + "?from=" + start + "&to=" + end
+    );
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const getProvinceData = async () => {
   try {
     const response = await axios.get(
