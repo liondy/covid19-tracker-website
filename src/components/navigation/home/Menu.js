@@ -7,24 +7,18 @@ function Menu() {
     <Container fluid>
       <Row className="justify-content-center">
         <Col xs="12" md="4">
-          <Link to="country" style={{ textDecoration: "none" }}>
-            <a className="HomeMenu" rel="noopener noreferrer">
-              Lihat Status Negara
-            </a>
+          <Link to="country" className="HomeMenu">
+            Lihat Status Negara
           </Link>
         </Col>
         <Col xs="12" md="4">
-          <Link to="province" style={{ textDecoration: "none" }}>
-            <a className="HomeMenu" rel="noopener noreferrer">
-              Lihat Status Provinsi
-            </a>
+          <Link to="province" className="HomeMenu">
+            Lihat Status Provinsi
           </Link>
         </Col>
         <Col xs="12" md="4">
-          <Link to="about" style={{ textDecoration: "none" }}>
-            <a className="HomeMenu" rel="noopener noreferrer">
-              Tentang Kami
-            </a>
+          <Link to="about" className="HomeMenu">
+            Tentang Kami
           </Link>
         </Col>
       </Row>
