@@ -1,11 +1,16 @@
 import React from "react";
 import { Dropdown } from "semantic-ui-react";
 
-function DropdownCustom({ data, changeCountry }) {
+function DropdownCustom({ data, onChange }) {
   const dataSource = [];
+  dataSource.push({
+    key: "GLOB",
+    value: "global",
+    text: "Global",
+  });
   for (let i in data) {
     dataSource.push({
-      key: data[i].IS02,
+      key: data[i].CountryCode,
       value: data[i].Slug,
       text: data[i].Country,
     });
@@ -13,12 +18,12 @@ function DropdownCustom({ data, changeCountry }) {
   return (
     <div className="text-center mt-5">
       <Dropdown
-        placeholder="----- Pilih Negaramu -----"
+        placeholder="Global"
         search
         selection
         options={dataSource}
         onChange={(e, { value }) => {
-          changeCountry({ value }.value);
+          onChange({ value }.value);
         }}
       />
     </div>

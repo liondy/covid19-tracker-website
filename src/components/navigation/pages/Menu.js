@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import "./Menu.css";
 import logo from "../../logo/covid.svg";
-import { Link, useLocation } from "react-router-dom";
-import {
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavItem,
-  Collapse,
-  NavbarToggler,
-} from "reactstrap";
+import { NavLink, useLocation } from "react-router-dom";
+import { Nav, Navbar, NavbarBrand, Collapse, NavbarToggler } from "reactstrap";
 
 function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +10,7 @@ function Menu() {
   const location = useLocation();
   let navbar = [
     {
+      key: "country",
       path: "/country",
       menu: "Negara",
       style:
@@ -25,6 +19,7 @@ function Menu() {
           : { color: "#81b3d2" },
     },
     {
+      key: "province",
       path: "/province",
       menu: "Provinsi",
       style:
@@ -33,6 +28,7 @@ function Menu() {
           : { color: "#81b3d2" },
     },
     {
+      key: "about",
       path: "/about",
       menu: "Tentang Kami",
       style:
@@ -43,19 +39,20 @@ function Menu() {
   ];
   const navBar = navbar.map((curr) => {
     return (
-      <NavItem className="ml-5 p-2 mb-2">
-        <Link to={curr.path} className="HomeMenu" style={curr.style}>
-          {curr.menu}
-        </Link>
-      </NavItem>
+      <NavLink
+        key={curr.key}
+        className="ml-5 p-2 mb-2 HomeMenu"
+        to={curr.path}
+        style={curr.style}
+      >
+        {curr.menu}
+      </NavLink>
     );
   });
   return (
     <Navbar className="nav" dark expand="md">
       <NavbarBrand href="/" className="p-2">
-        <Link to="/">
-          <img src={logo} alt="logo" className="img-fluid" width="50%" />
-        </Link>
+        <img src={logo} alt="logo" className="img-fluid" width="50%" />
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>

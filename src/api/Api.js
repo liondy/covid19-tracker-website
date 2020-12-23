@@ -1,18 +1,9 @@
 import API from "./index";
 import axios from "axios";
 
-export const getAllCountries = async () => {
+export const getSummaryData = async () => {
   try {
-    const response = await API.get("countries");
-    return response.data;
-  } catch (error) {
-    return error;
-  }
-};
-
-export const getCountriesData = async (country, from, to) => {
-  try {
-    const response = await API.get("country/" + country);
+    const response = await API.get("summary");
     return response.data;
   } catch (error) {
     return error;
