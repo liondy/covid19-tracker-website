@@ -1,0 +1,25 @@
+.bg-nav{
+  background-color: #2d6187;
+}
+
+.color-nav-up{
+  color: #2d6187;
+  border-top: 1px solid  #2d6187;
+  border-left: 1px solid  #2d6187;
+  border-right: 1px solid  #2d6187;
+}
+
+.color-nav-down{
+  color: #2d6187;
+  border-bottom: 1px solid  #2d6187;
+  border-left: 1px solid  #2d6187;
+  border-right: 1px solid  #2d6187;
+}
+
+.font{
+  font-size: large;
+}
+
+.font-bold{
+  font-weight: 700;
+}

@@ -7,7 +7,7 @@ function DropdownCustom({ country, data, onChange }) {
     dataSource.push({
       key: "WL",
       value: "world",
-      text: "Global",
+      text: "Dunia",
     });
     for (let i in data) {
       dataSource.push({
@@ -21,13 +21,15 @@ function DropdownCustom({ country, data, onChange }) {
   return (
     <div className="mt-5">
       <Dropdown
-        placeholder="Global"
+        placeholder="Dunia"
         search
         selection
         options={dataSource}
         onChange={(e, { value }) => {
-          onChange({ value }.value);
+          console.log(e);
+          onChange({ value }.value, e.target.innerText);
         }}
+        className="border border-secondary"
       />
     </div>
   );
