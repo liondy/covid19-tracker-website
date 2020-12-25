@@ -28,9 +28,13 @@ function DropdownCustom({ country, data, onChange }) {
         selection
         options={dataSource}
         onChange={(e, { value }) => {
-          console.log();
-          setSelected(e.target.innerText);
-          onChange({ value }.value, e.target.innerText);
+          let selectedCountry;
+          dataSource.some(function (element) {
+            selectedCountry = element.text;
+            return element.value === { value }.value;
+          });
+          setSelected(selectedCountry);
+          onChange({ value }.value, selectedCountry);
         }}
         className="border border-secondary"
       />

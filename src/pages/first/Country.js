@@ -6,6 +6,7 @@ import DateFilter from "../../components/RangeFilter/DateFilter";
 import Status from "../../components/data-status/Status";
 import { getSummaryData, getCountriesData } from "../../api/Api";
 import GraphStatus from "../../components/graphs/GraphStatus";
+import TopWorldGraph from "../../components/graphs/TopWorldGraph";
 
 function Country() {
   const [curSlug, setCurSlug] = useState();
@@ -15,6 +16,9 @@ function Country() {
   const [countries, setCountries] = useState([]);
   const [dateInterval, setInterval] = useState([]);
   const [selectedDate, setSelectedDate] = useState([]);
+  const [sortedConfirmedCountry, setConfirmedSorted] = useState([]);
+  const [sortedRecoveredCountry, setRecoveredSorted] = useState([]);
+  const [sortedDeathsCountry, setDeathsSorted] = useState([]);
   const [same, setSame] = useState(true);
   const [data, setData] = useState([]);
   const [world, setWorld] = useState(true);
@@ -42,7 +46,26 @@ function Country() {
     setSummaryData(fetchedData);
     setWorld(true);
     setUpdated(fetchedData.Date);
+    sortCountry([...fetchedData.Countries]);
     setLoadingData(false);
+  };
+  const sortCountry = (countries) => {
+    let sortByConfirmed = [...countries];
+    sortByConfirmed.sort(sortCountryBasedOn("TotalConfirmed"));
+    setConfirmedSorted(sortByConfirmed);
+    let sortByRecovered = [...countries];
+    sortByRecovered.sort(sortCountryBasedOn("TotalRecovered"));
+    setRecoveredSorted(sortByRecovered);
+    let sortByDeaths = [...countries];
+    sortByDeaths.sort(sortCountryBasedOn("TotalDeaths"));
+    setDeathsSorted(sortByDeaths);
+  };
+  const sortCountryBasedOn = (property) => {
+    return function (a, b) {
+      if (a[property] < b[property]) return 1;
+      else if (a[property] > b[property]) return -1;
+      return 0;
+    };
   };
   const setUpdated = (tanggalUpdate) => {
     let date = new Date(tanggalUpdate);
@@ -154,12 +177,20 @@ function Country() {
         />
       </div>
       <div>
-        <GraphStatus
-          isLoading={isLoadingData}
-          isWorld={world}
-          data={data}
-          curCountry={curCountry}
-        />
+        {world ? (
+          <TopWorldGraph
+            isLoading={isLoadingData}
+            sortedConfirmedCountry={sortedConfirmedCountry}
+            sortedRecoveredCountry={sortedRecoveredCountry}
+            sortedDeathsCountry={sortedDeathsCountry}
+          />
+        ) : (
+          <GraphStatus
+            isLoading={isLoadingData}
+            data={data}
+            curCountry={curCountry}
+          />
+        )}
       </div>
       <Footer />
     </div>

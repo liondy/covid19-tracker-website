@@ -6,7 +6,7 @@ import CountUp from "react-countup";
 function Status({ isLoading, isWorld, same, data, lastUpdate }) {
   const [duration] = useState(2.5);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="mt-3">Loading...</div>;
   }
   let confirmed;
   let active;

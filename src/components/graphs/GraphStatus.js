@@ -1,10 +1,7 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-function GraphStatus({ isWorld, isLoading, data, curCountry }) {
-  if (isWorld) {
-    return <div></div>;
-  }
+function GraphStatus({ isLoading, data, curCountry }) {
   if (isLoading) {
     return <div className="text-center mt-3">Loading...</div>;
   }
@@ -48,6 +45,19 @@ function GraphStatus({ isWorld, isLoading, data, curCountry }) {
         enabled: true,
         autoScaleYaxis: true,
       },
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 800,
+        animateGradually: {
+          enabled: true,
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350,
+        },
+      },
     },
     colors: ["#008FFB"],
     yaxis: {
@@ -71,6 +81,19 @@ function GraphStatus({ isWorld, isLoading, data, curCountry }) {
         enabled: true,
         autoScaleYaxis: true,
       },
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 800,
+        animateGradually: {
+          enabled: true,
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350,
+        },
+      },
     },
     colors: ["#00E396"],
     yaxis: {
@@ -93,6 +116,19 @@ function GraphStatus({ isWorld, isLoading, data, curCountry }) {
         type: "x",
         enabled: true,
         autoScaleYaxis: true,
+      },
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 800,
+        animateGradually: {
+          enabled: true,
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350,
+        },
       },
     },
     colors: ["#546E7A"],
