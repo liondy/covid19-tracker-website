@@ -5,7 +5,7 @@ This is a website that displays current covid-19 status in Indonesia. It has mob
 # Dependency
 
 `nodejs`: v10+ (Recommended: v14.15.1 (Current LTS))\
-`npm`: v6.14.8 (Current LTS).\
+`npm`: v6.14.10 (Current LTS).\
 An insight about coding Javascript
 
 # Installed Library
