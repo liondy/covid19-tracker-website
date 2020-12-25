@@ -21,6 +21,7 @@ npm install react-router-dom
 npm install semantic-ui-react semantic-ui-css
 npm install date-fns
 npm install @wojtekmaj/react-daterange-picker
+npm install react-countup
 ```
 
 Axios: to process API \
