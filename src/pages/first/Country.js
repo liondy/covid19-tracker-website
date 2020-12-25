@@ -39,6 +39,9 @@ function Country() {
     setData(fetchedData.Global);
     setCountries(fetchedData.Countries);
     setSummaryData(fetchedData);
+    setWorld(true);
+    setUpdated(fetchedData.Date);
+    setLoadingData(false);
   };
   const setUpdated = (tanggalUpdate) => {
     let date = new Date(tanggalUpdate);
@@ -68,9 +71,9 @@ function Country() {
   const changeCountry = async (slug, country) => {
     setLoadingDate(true);
     setLoadingData(true);
-    setCurSlug(slug);
-    setCurCountry(country);
     if (slug !== "world") {
+      setCurSlug(slug);
+      setCurCountry(country);
       const fetchedData = await getCountriesData(slug);
       countries.forEach((negara) => {
         if (negara.Slug === slug) {
