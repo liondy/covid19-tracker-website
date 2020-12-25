@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/layout/header/pages/Pages";
 import Footer from "../../components/layout/footer/Footer";
-import DropdownCustom from "../../components/dropdowns/DropdownCustom";
+import CountryPicker from "../../components/dropdowns/DropdownCustom";
 import DateFilter from "../../components/RangeFilter/DateFilter";
 import Status from "../../components/data-status/Status";
 import { getSummaryData, getCountriesData } from "../../api/Api";
+import GraphStatus from "../../components/graphs/GraphStatus";
 
 function Country() {
   const [curSlug, setCurSlug] = useState();
@@ -48,10 +49,14 @@ function Country() {
     let tahun = date.getFullYear();
     let bulan = date.getMonth();
     let tanggal = date.getDate();
+    tanggal = tanggal < 10 ? "0" + tanggal : tanggal;
     let hari = date.getDay();
     let jam = date.getHours();
+    jam = jam < 10 ? "0" + jam : jam;
     let menit = date.getMinutes();
+    menit = menit < 10 ? "0" + menit : menit;
     let detik = date.getSeconds();
+    detik = detik < 10 ? "0" + detik : detik;
     let updated =
       days[hari] +
       ", " +
@@ -127,10 +132,10 @@ function Country() {
     fetchSummaryData();
   }, []);
   return (
-    <div className="text-center">
+    <div>
       <Header />
-      <DropdownCustom country data={countries} onChange={changeCountry} />
-      {!world ? (
+      <div className="text-center">
+        <CountryPicker country data={countries} onChange={changeCountry} />
         <DateFilter
           country={curCountry}
           isLoading={isLoadingDate}
@@ -138,17 +143,24 @@ function Country() {
           selectedDate={selectedDate}
           minDate={dateInterval[0]}
           maxDate={dateInterval[1]}
+          isWorld={world}
         />
-      ) : (
-        <></>
-      )}
-      <Status
-        isLoading={isLoadingData}
-        isWorld={world}
-        same={same}
-        data={data}
-        lastUpdate={lastUpdate}
-      />
+        <Status
+          isLoading={isLoadingData}
+          isWorld={world}
+          same={same}
+          data={data}
+          lastUpdate={lastUpdate}
+        />
+      </div>
+      <div>
+        <GraphStatus
+          isLoading={isLoadingData}
+          isWorld={world}
+          data={data}
+          curCountry={curCountry}
+        />
+      </div>
       <Footer />
     </div>
   );

@@ -8,7 +8,11 @@ function DateFilter({
   selectedDate,
   minDate,
   maxDate,
+  isWorld,
 }) {
+  if (isWorld) {
+    return <div></div>;
+  }
   if (isLoading) {
     return <div className="mt-3">Loading...</div>;
   }
@@ -23,6 +27,7 @@ function DateFilter({
             value={selectedDate}
             minDate={minDate}
             maxDate={maxDate}
+            clearIcon={null}
           />
         </Col>
       </Row>

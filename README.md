@@ -22,6 +22,7 @@ npm install semantic-ui-react semantic-ui-css
 npm install date-fns
 npm install @wojtekmaj/react-daterange-picker
 npm install react-countup
+npm install --save react-apexcharts apexcharts
 ```
 
 Axios: to process API \
@@ -30,7 +31,8 @@ React Router Dom: enabling React to have multipage. \
 Semantic UI React: Dropdown Select. \
 Date FNS: to work with dates. \
 React DateRange Picker: to make date filtering. \
-React Countup: animating numbers
+React Countup: animating numbers. \
+React Apex Chart: adding visualization to covid-19 data.
 
 ## Run Project
 

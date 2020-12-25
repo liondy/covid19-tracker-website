@@ -23,10 +23,10 @@ function Status({ isLoading, isWorld, same, data, lastUpdate }) {
       recovered = data[data.length - 1].Recovered;
       deaths = data[data.length - 1].Deaths;
     } else {
-      confirmed = data[data.length - 1].Confirmed - data[0].Confirmed;
-      active = data[data.length - 1].Active - data[0].Active;
-      recovered = data[data.length - 1].Recovered - data[0].Recovered;
-      deaths = data[data.length - 1].Deaths - data[0].Deaths;
+      confirmed = Math.abs(data[data.length - 1].Confirmed - data[0].Confirmed);
+      active = Math.abs(data[data.length - 1].Active - data[0].Active);
+      recovered = Math.abs(data[data.length - 1].Recovered - data[0].Recovered);
+      deaths = Math.abs(data[data.length - 1].Deaths - data[0].Deaths);
     }
   }
   const formatValue = (value) => {
