@@ -26,7 +26,11 @@ npm install react-countup
 
 Axios: to process API \
 Bootstrap & Reactstrap: enabling React to use Bootstrap via Reactstrap Component \
-React Router Dom: enabling React to have multipage.
+React Router Dom: enabling React to have multipage. \
+Semantic UI React: Dropdown Select. \
+Date FNS: to work with dates. \
+React DateRange Picker: to make date filtering. \
+React Countup: animating numbers
 
 ## Run Project
 
