@@ -8,8 +8,6 @@ function Province() {
   const fetchData = async () => {
     const fetchedData = await getProvinceData();
     console.log(fetchedData);
-    const fetchedHospital = await getProvinceHospital();
-    console.log(fetchedHospital);
   };
   useEffect(() => {
     fetchData();

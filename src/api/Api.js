@@ -24,7 +24,7 @@ export const getCountriesData = async (country, start, end) => {
 export const getProvinceData = async () => {
   try {
     const response = await axios.get(
-      "https://data.covid19.go.id/public/api/prov.json"
+      "https://api.kawalcorona.com/indonesia/provinsi"
     );
     return response.data;
   } catch (error) {
