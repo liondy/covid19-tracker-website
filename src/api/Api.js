@@ -1,4 +1,5 @@
 import API from "./index";
+import API2 from "./index2";
 import axios from "axios";
 
 export const getSummaryData = async () => {
@@ -23,11 +24,11 @@ export const getCountriesData = async (country, start, end) => {
 
 export const getProvinceData = async () => {
   try {
-    const response = await axios.get(
-      "https://api.kawalcorona.com/indonesia/provinsi"
-    );
+    const response = await API2.get("/");
     return response.data;
   } catch (error) {
+    console.log("error");
+    console.log(error);
     return error;
   }
 };

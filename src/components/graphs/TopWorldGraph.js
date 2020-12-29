@@ -190,12 +190,14 @@ function TopWorldGraph({
         </Col>
       </Row>
       <Row>
-        <Chart
-          options={optionsConfirmed}
-          series={yConfirmedData}
-          type="bar"
-          height={350}
-        />
+        <Col>
+          <Chart
+            options={optionsConfirmed}
+            series={yConfirmedData}
+            type="bar"
+            height={350}
+          />
+        </Col>
       </Row>
       <Row className="mb-3">
         <Col md={10} sm={12}>
@@ -225,12 +227,14 @@ function TopWorldGraph({
         </Col>
       </Row>
       <Row>
-        <Chart
-          options={optionsRecovered}
-          series={yRecoverData}
-          type="bar"
-          height={350}
-        />
+        <Col>
+          <Chart
+            options={optionsRecovered}
+            series={yRecoverData}
+            type="bar"
+            height={350}
+          />
+        </Col>
       </Row>
       <Row className="mb-3">
         <Col md={10} sm={12}>
@@ -256,12 +260,14 @@ function TopWorldGraph({
         </Col>
       </Row>
       <Row>
-        <Chart
-          options={optionsDeaths}
-          series={yDeathsData}
-          type="bar"
-          height={350}
-        />
+        <Col>
+          <Chart
+            options={optionsDeaths}
+            series={yDeathsData}
+            type="bar"
+            height={350}
+          />
+        </Col>
       </Row>
     </div>
   );
