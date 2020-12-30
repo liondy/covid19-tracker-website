@@ -35,9 +35,11 @@ export const getProvinceData = async () => {
 
 export const getProvinceHospital = async () => {
   try {
-    const response = await axios.get(
-      "https://dekontaminasi.com/api/id/covid19/hospitals"
-    );
+    const response = await axios.get("/api/id/covid19/hospitals", {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
     return response.data;
   } catch (error) {
     return error;
