@@ -1,5 +1,4 @@
 import API from "./index";
-import API2 from "./index2";
 import axios from "axios";
 
 export const getSummaryData = async () => {
@@ -24,11 +23,11 @@ export const getCountriesData = async (country, start, end) => {
 
 export const getProvinceData = async () => {
   try {
-    const response = await API2.get("/");
-    return response.data;
+    const response = await axios.get(
+      "https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/COVID19_Indonesia_per_Provinsi/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
+    );
+    return response.data.features;
   } catch (error) {
-    console.log("error");
-    console.log(error);
     return error;
   }
 };
