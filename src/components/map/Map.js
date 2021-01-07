@@ -21,7 +21,7 @@ function Map({
       map: "countries/id/id-all",
       backgroundColor: "#eee",
       animation: true,
-      height: "40%",
+      height: "35%",
     },
     title: {
       text: "Peta Zona Resiko Covid19 di Indonesia",
@@ -42,8 +42,8 @@ function Map({
         // Use the gb-all map with no data as a basemap
         name: "Basemap",
         mapData: mapDataID,
-        borderColor: "#fff",
-        nullColor: "#545454",
+        borderColor: "#A0A0A0",
+        nullColor: "rgba(200, 200, 200, 0.3)",
         animation: true,
         showInLegend: false,
       },
@@ -59,7 +59,7 @@ function Map({
         // Specify points using lat/lon
         type: "mappoint",
         name: "zona oranye (sedang)",
-        color: "#FFA500",
+        color: "#ff4b0d",
         data: datasetOranye,
         cursor: "pointer",
       },
@@ -67,7 +67,7 @@ function Map({
         // Specify points using lat/lon
         type: "mappoint",
         name: "zona kuning (rendah)",
-        color: "#FFFF00",
+        color: "#dbc300",
         data: datasetKuning,
         cursor: "pointer",
       },
@@ -82,7 +82,7 @@ function Map({
     ],
   };
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="mt-3 text-center mb-3">Loading...</div>;
   }
   return (
     <div>

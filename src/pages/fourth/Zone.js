@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/layout/header/pages/Pages";
 import Footer from "../../components/layout/footer/Footer";
 import Map from "../../components/map/Map";
+import ZoneTable from "../../components/tables/ZoneTable";
 import { getIndoData } from "../../api/Api";
 
 function Zone() {
   const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState([]);
   const [dataMerah, setDataMerah] = useState([]);
   const [dataOranye, setDataOranye] = useState([]);
   const [dataKuning, setDataKuning] = useState([]);
@@ -13,12 +15,17 @@ function Zone() {
   const fetchMapData = async () => {
     setIsLoading(true);
     let fetchedData = await getIndoData();
+    let dataset = [];
     let datasetMerah = [];
     let datasetOranye = [];
     let datasetKuning = [];
     let datasetHijau = [];
-    let colors = ["#006400", "#FFFF00", "#FFA500", "#FF0000"];
+    let colors = ["#006400", "#dbc300", "#ff4b0d", "#FF0000"];
     fetchedData.forEach((element) => {
+      dataset.push({
+        kota: element.name,
+        status: element.status,
+      });
       if (element.nilai === 3) {
         datasetMerah.push({
           z: element.status,
@@ -53,6 +60,7 @@ function Zone() {
         });
       }
     });
+    setData(dataset);
     setDataMerah(datasetMerah);
     setDataOranye(datasetOranye);
     setDataKuning(datasetKuning);
@@ -62,7 +70,6 @@ function Zone() {
   useEffect(() => {
     fetchMapData();
   }, []);
-  if (isLoading) return <div>Loading..</div>;
   return (
     <>
       <Header />
@@ -73,6 +80,7 @@ function Zone() {
         datasetKuning={dataKuning}
         datasetHijau={dataHijau}
       />
+      <ZoneTable isLoading={isLoading} data={data} />
       <Footer />
     </>
   );

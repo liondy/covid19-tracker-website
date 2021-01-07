@@ -37,8 +37,8 @@ function TopWorldGraph({
     XrecoveredData.push(recoverData[i].Country);
     XdeathData.push(deathData[i].Country);
     YconfirmedData.push(confirmedData[i].TotalConfirmed);
-    YrecoverData.push(recoverData[i].TotalRecovered);
-    YdeathData.push(deathData[i].TotalDeaths);
+    YrecoverData.push(recoverData[i].RecoveredPercentage.toFixed(2));
+    YdeathData.push(deathData[i].DeathPercentage.toFixed(2));
   }
   let yConfirmedData = [
     {
@@ -112,8 +112,14 @@ function TopWorldGraph({
     },
     colors: ["#00E396"],
     yaxis: {
+      floating: true,
+      min: 0,
+      max: 100,
       labels: {
         minWidth: 40,
+        formatter: (value) => {
+          return value.toFixed(2) + "%";
+        },
       },
     },
     xaxis: {
@@ -143,8 +149,12 @@ function TopWorldGraph({
     },
     colors: ["#546E7A"],
     yaxis: {
+      floating: true,
       labels: {
         minWidth: 40,
+        formatter: (value) => {
+          return value.toFixed(2) + "%";
+        },
       },
     },
     xaxis: {

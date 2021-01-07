@@ -50,15 +50,32 @@ function Country() {
     setLoadingData(false);
   };
   const sortCountry = (countries) => {
-    let sortByConfirmed = [...countries];
+    let newCountries = countPercentage([...countries]);
+    let sortByConfirmed = [...newCountries];
     sortByConfirmed.sort(sortCountryBasedOn("TotalConfirmed"));
     setConfirmedSorted(sortByConfirmed);
-    let sortByRecovered = [...countries];
-    sortByRecovered.sort(sortCountryBasedOn("TotalRecovered"));
+    let sortByRecovered = [...newCountries];
+    sortByRecovered.sort(sortCountryBasedOn("RecoveredPercentage"));
     setRecoveredSorted(sortByRecovered);
-    let sortByDeaths = [...countries];
-    sortByDeaths.sort(sortCountryBasedOn("TotalDeaths"));
+    let sortByDeaths = [...newCountries];
+    sortByDeaths.sort(sortCountryBasedOn("DeathPercentage"));
+    console.log(sortByDeaths);
     setDeathsSorted(sortByDeaths);
+  };
+  const countPercentage = (countries) => {
+    let countriesToBeSet = [...countries];
+    countriesToBeSet.forEach((county) => {
+      if (county.TotalConfirmed == 0) {
+        county.RecoveredPercentage = 0.0;
+        county.DeathPercentage = 0.0;
+      } else {
+        county.RecoveredPercentage =
+          (county.TotalRecovered / county.TotalConfirmed) * 100;
+        county.DeathPercentage =
+          (county.TotalDeaths / county.TotalConfirmed) * 100;
+      }
+    });
+    return countriesToBeSet;
   };
   const sortCountryBasedOn = (property) => {
     return function (a, b) {

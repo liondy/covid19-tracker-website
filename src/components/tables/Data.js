@@ -16,23 +16,37 @@ function Data({ data, status }) {
       });
     } else if (status === "recovered") {
       return data.map((negara, index) => {
-        const { Country, TotalRecovered } = negara; //destructuring
+        const {
+          Country,
+          TotalConfirmed,
+          TotalRecovered,
+          RecoveredPercentage,
+        } = negara; //destructuring
         return (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{Country}</td>
-            <td>{TotalRecovered}</td>
+            <td>{TotalConfirmed}</td>
+            <td> {TotalRecovered} </td>
+            <td> {RecoveredPercentage.toFixed(2)}% </td>
           </tr>
         );
       });
     } else if (status === "deaths") {
       return data.map((negara, index) => {
-        const { Country, TotalDeaths } = negara; //destructuring
+        const {
+          Country,
+          TotalConfirmed,
+          TotalDeaths,
+          DeathPercentage,
+        } = negara; //destructuring
         return (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{Country}</td>
+            <td>{TotalConfirmed}</td>
             <td>{TotalDeaths}</td>
+            <td> {DeathPercentage.toFixed(2)}% </td>
           </tr>
         );
       });
@@ -44,7 +58,23 @@ function Data({ data, status }) {
         <tr>
           <th>No.</th>
           <th>Negara</th>
-          <th>Total</th>
+          <th>Total Konfirmasi</th>
+          {status === "recovered" ? (
+            <>
+              <th>Total Sembuh</th>
+              <th>% dari Total Sembuh</th>
+            </>
+          ) : (
+            <></>
+          )}
+          {status === "deaths" ? (
+            <>
+              <th>Total Meninggal</th>
+              <th>% dari Total Meninggal</th>
+            </>
+          ) : (
+            <></>
+          )}
         </tr>
       </thead>
       <tbody>{renderTableData()}</tbody>
