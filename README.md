@@ -33,7 +33,7 @@ Semantic UI React: Dropdown Select. \
 Date FNS: to work with dates. \
 React DateRange Picker: to make date filtering. \
 React Countup: animating numbers. \
-React Apex Chart: adding charts to covid-19 data. \
+React Apex Chart: adding visualization to covid-19 data. \
 Highcharts: adding map visualization to Indonesia zone.
 
 ## Data Source
