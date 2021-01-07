@@ -38,13 +38,14 @@ Highcharts: adding map visualization to Indonesia zone.
 
 ## Data Source
 
-Country & World: [Covi19 API](https://documenter.getpostman.com/view/10808728/SzS8rjbc)
-Province Indonesia: [BNPB](https://bnpb-inacovid19.hub.arcgis.com/datasets/data-harian-kasus-per-provinsi-covid-19-indonesia/geoservice)
-City Zone Indonesia: [Satuan Tugas Penanganan COVID-19](https://covid19.go.id/peta-risiko)_
-Hospital for Covid-19: [Dekontaminasi](https://dekontaminasi.com/api/id/covid19/hospitals)_
+Country & World: [Covi19 API](https://documenter.getpostman.com/view/10808728/SzS8rjbc) \
+Province Indonesia: [BNPB](https://bnpb-inacovid19.hub.arcgis.com/datasets/data-harian-kasus-per-provinsi-covid-19-indonesia/geoservice) \
+City Zone Indonesia: [Satuan Tugas Penanganan COVID-19](https://covid19.go.id/peta-risiko)[^1] \
+Hospital for Covid-19: [Dekontaminasi](https://dekontaminasi.com/api/id/covid19/hospitals)[^1] \
 
-- CORS Header Problem.
-  Solution: Hosted with Vercel on Node.JS (Serverless) [API](https://serverless-covid19-indonesia-api.liondy.vercel.app/)
+[^1]:
+    CORS Header Problem.
+    Solution: Hosted with Vercel on Node.JS (Serverless) [API](https://serverless-covid19-indonesia-api.liondy.vercel.app/)
 
 ## Run Project
 
