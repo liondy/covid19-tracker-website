@@ -28,6 +28,15 @@ function Menu() {
           : { color: "#81b3d2" },
     },
     {
+      key: "zona",
+      path: "/zona",
+      menu: "Zona",
+      style:
+        location.pathname === "/zona"
+          ? { color: "#eee" }
+          : { color: "#81b3d2" },
+    },
+    {
       key: "about",
       path: "/about",
       menu: "Tentang Kami",

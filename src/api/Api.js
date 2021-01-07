@@ -44,3 +44,14 @@ export const getProvinceHospital = async () => {
     return error;
   }
 };
+
+export const getIndoData = async () => {
+  try {
+    const response = await axios.get(
+      "https://serverless-covid19-indonesia-api.liondy.vercel.app/api/zona-indonesia"
+    );
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
