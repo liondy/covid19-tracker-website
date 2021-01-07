@@ -33,7 +33,7 @@ Semantic UI React: Dropdown Select. \
 Date FNS: to work with dates. \
 React DateRange Picker: to make date filtering. \
 React Countup: animating numbers. \
-React Apex Chart: adding visualization to covid-19 data. \
+React Apex Chart: adding charts to covid-19 data. \
 Highcharts: adding map visualization to Indonesia zone.
 
 ## Data Source
@@ -41,11 +41,11 @@ Highcharts: adding map visualization to Indonesia zone.
 Country & World: [Covi19 API](https://documenter.getpostman.com/view/10808728/SzS8rjbc) \
 Province Indonesia: [BNPB](https://bnpb-inacovid19.hub.arcgis.com/datasets/data-harian-kasus-per-provinsi-covid-19-indonesia/geoservice) \
 City Zone Indonesia: [Satuan Tugas Penanganan COVID-19](https://covid19.go.id/peta-risiko) <sup>1</sup> \
-Hospital for Covid-bignote: [Dekontaminasi](https://dekontaminasi.com/api/id/covid19/hospitals) <sup>1</sup> 
+Hospital for Covid-bignote: [Dekontaminasi](https://dekontaminasi.com/api/id/covid19/hospitals) <sup>1</sup>
 
 <sup>1</sup>
-    CORS Header Problem. \
-    Solution: Hosted with Vercel on Node.JS (Serverless) [API](https://serverless-covid19-indonesia-api.liondy.vercel.app/)
+CORS Header Problem. \
+ Solution: Hosted with Vercel on Node.JS (Serverless) [API](https://serverless-covid19-indonesia-api.liondy.vercel.app/)
 
 ## Run Project
 
