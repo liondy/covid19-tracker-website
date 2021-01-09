@@ -4,6 +4,7 @@ import { Dropdown } from "semantic-ui-react";
 function DropdownCustom({ country, data, onChange }) {
   const [selected, setSelected] = useState("Dunia");
   const dataSource = [];
+  const dataProvince = [];
   if (country) {
     dataSource.push({
       key: "WL",
@@ -18,6 +19,18 @@ function DropdownCustom({ country, data, onChange }) {
       });
     }
   } else {
+    dataProvince.push({
+      key: "Province",
+      value: "All",
+      text: "Province"
+    });
+    for (let i in data) {
+      dataProvince.push({
+        key: data[i].Kode_Provi,
+        value: data[i].Provinsi,
+        text: data[i].Provinsi,
+      });
+    }
   }
   return (
     <div className="mt-5">
