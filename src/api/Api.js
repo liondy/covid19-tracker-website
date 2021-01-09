@@ -32,15 +32,25 @@ export const getProvinceData = async () => {
   }
 };
 
+const serverless = "https://serverless-covid19-indonesia-api.liondy.vercel.app/api/"
 export const getProvinceHospital = async () => {
   try {
-    const response = await axios.get("/api/id/covid19/hospitals", {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
+    const response = await axios.get(
+      serverless+"hospital"
+    );
     return response.data;
   } catch (error) {
     return error;
   }
 };
+
+export const getZonaIndonesia = async () => {
+  try {
+    const response = await axios.get(
+      serverless+"zona-indonesia"
+    );
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+}
