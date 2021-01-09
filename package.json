@@ -1,7 +1,6 @@
 {
   "name": "covid19-tracker-website",
   "version": "0.1.0",
-  "proxy": "https://dekontaminasi.com",
   "private": true,
   "dependencies": {
     "@highcharts/map-collection": "^1.1.3",

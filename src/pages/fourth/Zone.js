@@ -3,7 +3,7 @@ import Header from "../../components/layout/header/pages/Pages";
 import Footer from "../../components/layout/footer/Footer";
 import Map from "../../components/map/Map";
 import ZoneTable from "../../components/tables/ZoneTable";
-import { getIndoData } from "../../api/Api";
+import { getZonaIndonesia } from "../../api/Api";
 
 function Zone() {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +14,7 @@ function Zone() {
   const [dataHijau, setDataHijau] = useState([]);
   const fetchMapData = async () => {
     setIsLoading(true);
-    let fetchedData = await getIndoData();
+    let fetchedData = await getZonaIndonesia();
     let dataset = [];
     let datasetMerah = [];
     let datasetOranye = [];
