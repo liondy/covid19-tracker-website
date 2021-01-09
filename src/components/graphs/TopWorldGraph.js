@@ -37,8 +37,8 @@ function TopWorldGraph({
     XrecoveredData.push(recoverData[i].Country);
     XdeathData.push(deathData[i].Country);
     YconfirmedData.push(confirmedData[i].TotalConfirmed);
-    YrecoverData.push(recoverData[i].RecoveredPercentage.toFixed(2));
-    YdeathData.push(deathData[i].DeathPercentage.toFixed(2));
+    YrecoverData.push(recoverData[i].RecoveredPercentage);
+    YdeathData.push(deathData[i].DeathPercentage);
   }
   let yConfirmedData = [
     {
@@ -88,6 +88,11 @@ function TopWorldGraph({
     xaxis: {
       categories: XconfirmedData,
     },
+    dataLabels: {
+      formatter: function (val, opts) {
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      },
+    },
   };
   let optionsRecovered = {
     chart: {
@@ -118,12 +123,17 @@ function TopWorldGraph({
       labels: {
         minWidth: 40,
         formatter: (value) => {
-          return value.toFixed(2) + "%";
+          return value + "%";
         },
       },
     },
     xaxis: {
       categories: XrecoveredData,
+    },
+    dataLabels: {
+      formatter: function (val, opts) {
+        return val.toFixed(2).toString().replace(".", ",") + "%";
+      },
     },
   };
   let optionsDeaths = {
@@ -153,12 +163,17 @@ function TopWorldGraph({
       labels: {
         minWidth: 40,
         formatter: (value) => {
-          return value.toFixed(2) + "%";
+          return value + "%";
         },
       },
     },
     xaxis: {
       categories: XdeathData,
+    },
+    dataLabels: {
+      formatter: function (val, opts) {
+        return val.toFixed(2).toString().replace(".", ",") + "%";
+      },
     },
   };
   const toggleConfirmed = () => {

@@ -65,7 +65,7 @@ function Country() {
   const countPercentage = (countries) => {
     let countriesToBeSet = [...countries];
     countriesToBeSet.forEach((county) => {
-      if (county.TotalConfirmed == 0) {
+      if (county.TotalConfirmed === 0) {
         county.RecoveredPercentage = 0.0;
         county.DeathPercentage = 0.0;
       } else {

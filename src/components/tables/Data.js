@@ -10,7 +10,9 @@ function Data({ data, status }) {
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{Country}</td>
-            <td>{TotalConfirmed}</td>
+            <td>
+              {TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
           </tr>
         );
       });
@@ -26,9 +28,13 @@ function Data({ data, status }) {
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{Country}</td>
-            <td>{TotalConfirmed}</td>
-            <td> {TotalRecovered} </td>
-            <td> {RecoveredPercentage.toFixed(2)}% </td>
+            <td>
+              {TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
+            <td>
+              {TotalRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
+            <td> {RecoveredPercentage.toFixed(2).replace(".", ",")}% </td>
           </tr>
         );
       });
@@ -44,9 +50,13 @@ function Data({ data, status }) {
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{Country}</td>
-            <td>{TotalConfirmed}</td>
-            <td>{TotalDeaths}</td>
-            <td> {DeathPercentage.toFixed(2)}% </td>
+            <td>
+              {TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
+            <td>
+              {TotalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
+            <td> {DeathPercentage.toFixed(2).replace(".", ",")}% </td>
           </tr>
         );
       });
