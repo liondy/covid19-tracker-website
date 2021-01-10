@@ -11,14 +11,12 @@ export const getSummaryData = async () => {
 };
 
 export const getCountriesData = async (country, start, end) => {
-  try {
-    const response = await API.get(
-      "country/" + country + "?from=" + start + "&to=" + end
-    );
-    return response.data;
-  } catch (error) {
-    return error;
-  }
+  const response = await API.get(
+    "country/" + country + "?from=" + start + "&to=" + end
+  ).catch((err) => {
+    return [];
+  });
+  return response.data;
 };
 
 export const getProvinceData = async () => {

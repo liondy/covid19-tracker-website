@@ -59,7 +59,6 @@ function Country() {
     setRecoveredSorted(sortByRecovered);
     let sortByDeaths = [...newCountries];
     sortByDeaths.sort(sortCountryBasedOn("DeathPercentage"));
-    console.log(sortByDeaths);
     setDeathsSorted(sortByDeaths);
   };
   const countPercentage = (countries) => {
@@ -117,24 +116,31 @@ function Country() {
     setLoadingDate(true);
     setLoadingData(true);
     if (slug !== "world") {
+      setWorld(false);
       setCurSlug(slug);
       setCurCountry(country);
       const fetchedData = await getCountriesData(slug);
-      countries.forEach((negara) => {
-        if (negara.Slug === slug) {
-          setUpdated(negara.Date);
-        }
-      });
-      let all = true;
-      let firstDate = new Date(fetchedData[0].Date);
-      let lastDate = new Date(fetchedData[fetchedData.length - 1].Date);
-      let interval = [];
-      interval.push(firstDate);
-      interval.push(lastDate);
-      setSelectedDate(interval);
-      setInterval(interval);
-      setWorld(false);
-      getData(slug, firstDate, lastDate, all);
+      console.log(fetchedData);
+      if (fetchedData === undefined) {
+        console.log("masuk");
+        setData([]);
+        setLoadingData(false);
+      } else {
+        countries.forEach((negara) => {
+          if (negara.Slug === slug) {
+            setUpdated(negara.Date);
+          }
+        });
+        let all = true;
+        let firstDate = new Date(fetchedData[0].Date);
+        let lastDate = new Date(fetchedData[fetchedData.length - 1].Date);
+        let interval = [];
+        interval.push(firstDate);
+        interval.push(lastDate);
+        setSelectedDate(interval);
+        setInterval(interval);
+        getData(slug, firstDate, lastDate, all);
+      }
     } else {
       setWorld(true);
       setData(summaryData.Global);

@@ -17,6 +17,14 @@ function Status({ isLoading, isWorld, same, data, lastUpdate }) {
     recovered = data.TotalRecovered;
     deaths = data.TotalDeaths;
   } else {
+    if (data.length === 0) {
+      return (
+        <div className="mt-3 p-5">
+          Maaf, gagal mengambil data. Silahkan coba sesaat lagi atau mengganti
+          dengan negara lain
+        </div>
+      );
+    }
     if (same) {
       confirmed = data[data.length - 1].Confirmed;
       active = data[data.length - 1].Active;
@@ -47,6 +55,7 @@ function Status({ isLoading, isWorld, same, data, lastUpdate }) {
               duration={duration}
               formattingFn={formatValue}
             />
+            &nbsp; &nbsp; ({confirmed === 0 ? 0 : 100}%)
           </Row>
           <Row className="justify-content-center color-nav-down text-white p-4 bg-nav rounded-bottom font font-bold">
             Kasus Terkonfirmasi
@@ -62,6 +71,9 @@ function Status({ isLoading, isWorld, same, data, lastUpdate }) {
                   duration={duration}
                   formattingFn={formatValue}
                 />
+                &nbsp; &nbsp; (
+                {confirmed === 0 ? 0 : ((active / confirmed) * 100).toFixed(2)}
+                %)
               </Row>
               <Row className="justify-content-center border-bottom border-left border-right border-primary text-white p-4 bg-primary rounded-bottom font font-bold">
                 Kasus Aktif
@@ -79,6 +91,8 @@ function Status({ isLoading, isWorld, same, data, lastUpdate }) {
               duration={duration}
               formattingFn={formatValue}
             />
+            &nbsp; &nbsp; (
+            {confirmed === 0 ? 0 : ((recovered / confirmed) * 100).toFixed(2)}%)
           </Row>
           <Row className="justify-content-center border-bottom border-left border-right border-success text-white p-4 bg-success rounded-bottom font font-bold">
             Kasus Sembuh
@@ -92,6 +106,8 @@ function Status({ isLoading, isWorld, same, data, lastUpdate }) {
               duration={duration}
               formattingFn={formatValue}
             />
+            &nbsp; &nbsp; (
+            {confirmed === 0 ? 0 : ((deaths / confirmed) * 100).toFixed(2)}%)
           </Row>
           <Row className="justify-content-center border-bottom border-left border-right border-secondary text-white p-4 bg-secondary rounded-bottom font font-bold">
             Kasus Meninggal
