@@ -49,3 +49,14 @@ export const getZonaIndonesia = async () => {
     return error;
   }
 };
+
+export const getContributors = async () => {
+  try {
+    const response = await axios.get(
+      "https://api.github.com/repos/liondy/covid19-tracker-website/contributors"
+    );
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
