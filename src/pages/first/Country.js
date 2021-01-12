@@ -158,7 +158,7 @@ function Country() {
     <div>
       <Header />
       <div className="text-center">
-        <CountryPicker country data={countries} onChange={changeCountry} />
+        <CountryPicker placeholder="Dunia" data={countries} onChange={changeCountry} />
         <DateFilter
           country={curCountry}
           isLoading={isLoadingDate}
