@@ -6,8 +6,9 @@ import React, { useState, useEffect } from "react";
 import Dropdown from "../../components/dropdowns/DropdownCustom";
 
 function Province() {
-  const [curProvince, setCurProvince] = useState({});
+  const [province, setProvince] = useState({});
   const [curGeom, setCurGeom] = useState({});
+  const [data, setData] = useState({});
   const [curHospital, setCurHospital] = useState({});
   const [curZona, setCurZona] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -16,13 +17,14 @@ function Province() {
     const fetchedHospital = await getProvinceHospital();
     const fetchedZona = await getZonaIndonesia();
     fetchedHospital.sort(sortData("province"));
+    fetchedProvinces.sort(sortData("Provinsi"));
 
-    setCurProvince(fetchedProvinces);
+    setProvince(fetchedProvinces);
     setCurHospital(fetchedHospital);
     setCurZona(fetchedZona);
 
-    // console.log("fetchedProvinces:");
-    // console.log(fetchedProvinces);
+    console.log("fetchedProvinces:");
+    console.log(fetchedProvinces);
 
     // console.log("fetchedHospital:");
     // console.log(fetchedHospital);
@@ -38,17 +40,26 @@ function Province() {
     };
   };
   const changeProvince = async (province) => {
-    console.log("p");
-    console.log(province);
     setLoading(true);
     const fetchedDataProvince = await getProvinces();
+    var curProv = {};
     for (let prov in fetchedDataProvince){
-      if(prov.Province==province){
-        fetchedDataProvince = prov;
+      if(fetchedDataProvince[prov].Provinsi==province){
+        curProv = fetchedDataProvince[prov];
+        break;
       }
     }
-    console.log(fetchedDataProvince);
-    setCurProvince(fetchedDataProvince);
+    setData(curProv);
+    const fetchedDataHospital = await getProvinceHospital();
+    const hospital = [];
+    for (let prov in fetchedDataHospital){
+      if(fetchedDataHospital[prov].region.toLowerCase().includes(province.toLowerCase())){
+        var temp = fetchedDataHospital[prov];
+        temp.province = province;
+        hospital.push(temp);
+      } 
+    }
+    console.log(hospital);
     setLoading(false);
   };
   useEffect(() => {
@@ -57,7 +68,7 @@ function Province() {
   return (
     <>
       <Header />
-      <Dropdown placeholder="Indonesia" data={curProvince} onChange={changeProvince} />
+      <Dropdown placeholder="Indonesia" data={province} onChange={changeProvince} />
       <Footer />
     </>
   );
