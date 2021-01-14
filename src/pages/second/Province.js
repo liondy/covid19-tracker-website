@@ -4,6 +4,7 @@ import Footer from "../../components/layout/footer/Footer";
 import { getProvinces, getProvinceHospital, getZonaIndonesia} from "../../api/Api";
 import React, { useState, useEffect } from "react";
 import Dropdown from "../../components/dropdowns/DropdownCustom";
+import RiskPieChart from "../../components/graphs/RiskPieChart";
 
 function Province() {
   const [province, setProvince] = useState({});
@@ -69,6 +70,7 @@ function Province() {
     <>
       <Header />
       <Dropdown placeholder="Indonesia" data={province} onChange={changeProvince} />
+      <RiskPieChart />
       <Footer />
     </>
   );
