@@ -70,7 +70,7 @@ function Province() {
     <>
       <Header />
       <Dropdown placeholder="Indonesia" data={province} onChange={changeProvince} />
-      <ZoneTable data={data} />
+      <DataP data={data} />
       <Footer />
     </>
   );
