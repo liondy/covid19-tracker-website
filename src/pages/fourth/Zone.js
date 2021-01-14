@@ -4,6 +4,8 @@ import Footer from "../../components/layout/footer/Footer";
 import Map from "../../components/map/Map";
 import ZoneTable from "../../components/tables/ZoneTable";
 import { getZonaIndonesia } from "../../api/Api";
+import RiskPieChart from "../../components/graphs/RiskPieChart";
+
 
 function Zone() {
   const [isLoading, setIsLoading] = useState(true);
@@ -67,6 +69,7 @@ function Zone() {
     setDataHijau(datasetHijau);
     setIsLoading(false);
   };
+  let dataWarna=[dataMerah.length,dataOranye.length,dataKuning.length,dataHijau.length];
   useEffect(() => {
     fetchMapData();
   }, []);
@@ -80,7 +83,10 @@ function Zone() {
         datasetKuning={dataKuning}
         datasetHijau={dataHijau}
       />
+      <RiskPieChart zoneColor={dataWarna}/>
       <ZoneTable isLoading={isLoading} data={data} />
+      
+      
       <Footer />
     </>
   );
