@@ -19,12 +19,18 @@ export const getCountriesData = async (country, start, end) => {
   return response.data;
 };
 
-export const getProvinceData = async () => {
+export const getProvinces = async () => {
   try {
     const response = await axios.get(
       "https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/COVID19_Indonesia_per_Provinsi/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
     );
-    return response.data.features;
+    var reconstruct_response = [];
+    for (let data in response.data.features){
+      var temp = response.data.features[data].attributes;
+      temp.geometry = response.data.features[data].geometry;
+      reconstruct_response.push(temp);
+    }
+    return reconstruct_response;
   } catch (error) {
     return error;
   }
