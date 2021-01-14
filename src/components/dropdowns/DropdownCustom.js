@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Dropdown } from "semantic-ui-react";
 
-function DropdownCustom({ country, data, onChange }) {
-  const [selected, setSelected] = useState("Dunia");
+function DropdownCustom({ placeholder, data, onChange }) {
+  const [selected, setSelected] = useState(placeholder);
   const dataSource = [];
-  const dataProvince = [];
-  if (country) {
+  if (placeholder=="Dunia") {
     dataSource.push({
       key: "WL",
       value: "world",
@@ -18,24 +17,21 @@ function DropdownCustom({ country, data, onChange }) {
         text: data[i].Country,
       });
     }
-  } else {
-    dataProvince.push({
-      key: "Province",
-      value: "All",
-      text: "Province"
-    });
+  } else if (placeholder=="Indonesia") {
     for (let i in data) {
-      dataProvince.push({
+      dataSource.push({
         key: data[i].Kode_Provi,
         value: data[i].Provinsi,
         text: data[i].Provinsi,
       });
     }
+  } else {
+    console.log("dropdown error");
   }
   return (
     <div className="mt-5">
       <Dropdown
-        placeholder="Dunia"
+        placeholder={placeholder}
         defaultValue={selected}
         search
         selection

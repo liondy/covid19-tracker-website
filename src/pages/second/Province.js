@@ -1,55 +1,36 @@
 import "./Province.css";
 import Header from "../../components/layout/header/pages/Pages";
 import Footer from "../../components/layout/footer/Footer";
-import { getProvinceData, getProvinceHospital, getZonaIndonesia} from "../../api/Api";
+import { getProvinces, getProvinceHospital, getZonaIndonesia} from "../../api/Api";
 import React, { useState, useEffect } from "react";
 import Dropdown from "../../components/dropdowns/DropdownCustom";
 
 function Province() {
-  const [curAttr, setCurAttr] = useState({});
+  const [province, setProvince] = useState({});
   const [curGeom, setCurGeom] = useState({});
+  const [data, setData] = useState({});
   const [curHospital, setCurHospital] = useState({});
   const [curZona, setCurZona] = useState({});
-  const [isLoadingData, setLoadingData] = useState(true);
-  const [isLoadingHospital, setLoadingHospital] = useState(true);
-  const attr = [];
-  const geom = [];
+  const [isLoading, setLoading] = useState(true);
   const fetchData = async () => {
-    const fetchedData = await getProvinceData();
+    const fetchedProvinces = await getProvinces();
     const fetchedHospital = await getProvinceHospital();
     const fetchedZona = await getZonaIndonesia();
-  	fetchedHospital.sort(sortData("province"));
-  	// mengolah fetchedData
-    for (let data in fetchedData){
-    	attr.push(fetchedData[data].attributes);
-    	geom.push(fetchedData[data].geometry);
-    }
+    fetchedHospital.sort(sortData("province"));
+    fetchedProvinces.sort(sortData("Provinsi"));
 
-    setCurAttr(attr);
-    setCurGeom(geom);
-
+    setProvince(fetchedProvinces);
     setCurHospital(fetchedHospital);
     setCurZona(fetchedZona);
 
-    console.log("fetchedData:");
-    console.log("-attr:");
-    console.log(attr);
-    console.log("-geom:");
-    console.log(geom);
+    console.log("fetchedProvinces:");
+    console.log(fetchedProvinces);
 
+    // console.log("fetchedHospital:");
+    // console.log(fetchedHospital);
 
-  	console.log("fetchedHospital:");
-  	console.log(fetchedHospital);
-
-    console.log("fetchedZona:");
-    console.log(fetchedZona);
-
-    const resiko = new Set();
-    for(let r in fetchedZona){
-      resiko.add(fetchedZona[r].status);
-    }
-    console.log(resiko);
-
+    // console.log("fetchedZona:");
+    // console.log(fetchedZona);
   };
   const sortData = (property) => {
     return function (a, b) {
@@ -58,14 +39,36 @@ function Province() {
       return 0;
     };
   };
-
+  const changeProvince = async (province) => {
+    setLoading(true);
+    const fetchedDataProvince = await getProvinces();
+    var curProv = {};
+    for (let prov in fetchedDataProvince){
+      if(fetchedDataProvince[prov].Provinsi==province){
+        curProv = fetchedDataProvince[prov];
+        break;
+      }
+    }
+    setData(curProv);
+    const fetchedDataHospital = await getProvinceHospital();
+    const hospital = [];
+    for (let prov in fetchedDataHospital){
+      if(fetchedDataHospital[prov].region.toLowerCase().includes(province.toLowerCase())){
+        var temp = fetchedDataHospital[prov];
+        temp.province = province;
+        hospital.push(temp);
+      } 
+    }
+    console.log(hospital);
+    setLoading(false);
+  };
   useEffect(() => {
     fetchData();
   }, []);
   return (
     <>
       <Header />
-      {/* Place content here */}
+      <Dropdown placeholder="Indonesia" data={province} onChange={changeProvince} />
       <Footer />
     </>
   );
