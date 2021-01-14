@@ -11,14 +11,12 @@ export const getSummaryData = async () => {
 };
 
 export const getCountriesData = async (country, start, end) => {
-  try {
-    const response = await API.get(
-      "country/" + country + "?from=" + start + "&to=" + end
-    );
-    return response.data;
-  } catch (error) {
-    return error;
-  }
+  const response = await API.get(
+    "country/" + country + "?from=" + start + "&to=" + end
+  ).catch((err) => {
+    return [];
+  });
+  return response.data;
 };
 
 export const getProvinces = async () => {
@@ -38,12 +36,11 @@ export const getProvinces = async () => {
   }
 };
 
-const serverless = "https://serverless-covid19-indonesia-api.liondy.vercel.app/api/"
+const serverless =
+  "https://serverless-covid19-indonesia-api.liondy.vercel.app/api/";
 export const getProvinceHospital = async () => {
   try {
-    const response = await axios.get(
-      serverless+"hospital"
-    );
+    const response = await axios.get(serverless + "hospital");
     return response.data;
   } catch (error) {
     return error;
@@ -52,11 +49,20 @@ export const getProvinceHospital = async () => {
 
 export const getZonaIndonesia = async () => {
   try {
+    const response = await axios.get(serverless + "zona-indonesia");
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getContributors = async () => {
+  try {
     const response = await axios.get(
-      serverless+"zona-indonesia"
+      "https://api.github.com/repos/liondy/covid19-tracker-website/contributors"
     );
     return response.data;
   } catch (error) {
     return error;
   }
-}
+};

@@ -10,29 +10,53 @@ function Data({ data, status }) {
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{Country}</td>
-            <td>{TotalConfirmed}</td>
+            <td>
+              {TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
           </tr>
         );
       });
     } else if (status === "recovered") {
       return data.map((negara, index) => {
-        const { Country, TotalRecovered } = negara; //destructuring
+        const {
+          Country,
+          TotalConfirmed,
+          TotalRecovered,
+          RecoveredPercentage,
+        } = negara; //destructuring
         return (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{Country}</td>
-            <td>{TotalRecovered}</td>
+            <td>
+              {TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
+            <td>
+              {TotalRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
+            <td> {RecoveredPercentage.toFixed(2).replace(".", ",")}% </td>
           </tr>
         );
       });
     } else if (status === "deaths") {
       return data.map((negara, index) => {
-        const { Country, TotalDeaths } = negara; //destructuring
+        const {
+          Country,
+          TotalConfirmed,
+          TotalDeaths,
+          DeathPercentage,
+        } = negara; //destructuring
         return (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{Country}</td>
-            <td>{TotalDeaths}</td>
+            <td>
+              {TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
+            <td>
+              {TotalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
+            <td> {DeathPercentage.toFixed(2).replace(".", ",")}% </td>
           </tr>
         );
       });
@@ -44,7 +68,23 @@ function Data({ data, status }) {
         <tr>
           <th>No.</th>
           <th>Negara</th>
-          <th>Total</th>
+          <th>Total Konfirmasi</th>
+          {status === "recovered" ? (
+            <>
+              <th>Total Sembuh</th>
+              <th>% dari Total Sembuh</th>
+            </>
+          ) : (
+            <></>
+          )}
+          {status === "deaths" ? (
+            <>
+              <th>Total Meninggal</th>
+              <th>% dari Total Meninggal</th>
+            </>
+          ) : (
+            <></>
+          )}
         </tr>
       </thead>
       <tbody>{renderTableData()}</tbody>
