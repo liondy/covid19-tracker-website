@@ -1,8 +1,9 @@
 import "./Province.css";
 import Header from "../../components/layout/header/pages/Pages";
 import Footer from "../../components/layout/footer/Footer";
-import { getProvinces, getProvinceHospital, getZonaIndonesia} from "../../api/Api";
+import { getProvinces, getProvinceHospital, getZonaIndonesia } from "../../api/Api";
 import React, { useState, useEffect } from "react";
+import DataP from "../../components/tables/DataP";
 import Dropdown from "../../components/dropdowns/DropdownCustom";
 
 function Province() {
@@ -43,8 +44,8 @@ function Province() {
     setLoading(true);
     const fetchedDataProvince = await getProvinces();
     var curProv = {};
-    for (let prov in fetchedDataProvince){
-      if(fetchedDataProvince[prov].Provinsi==province){
+    for (let prov in fetchedDataProvince) {
+      if (fetchedDataProvince[prov].Provinsi == province) {
         curProv = fetchedDataProvince[prov];
         break;
       }
@@ -52,12 +53,12 @@ function Province() {
     setData(curProv);
     const fetchedDataHospital = await getProvinceHospital();
     const hospital = [];
-    for (let prov in fetchedDataHospital){
-      if(fetchedDataHospital[prov].region.toLowerCase().includes(province.toLowerCase())){
+    for (let prov in fetchedDataHospital) {
+      if (fetchedDataHospital[prov].region.toLowerCase().includes(province.toLowerCase())) {
         var temp = fetchedDataHospital[prov];
         temp.province = province;
         hospital.push(temp);
-      } 
+      }
     }
     console.log(hospital);
     setLoading(false);
@@ -69,7 +70,6 @@ function Province() {
     <>
       <Header />
       <Dropdown placeholder="Indonesia" data={province} onChange={changeProvince} />
-      
       <Footer />
     </>
   );
