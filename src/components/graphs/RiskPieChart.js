@@ -2,7 +2,13 @@ import React from "react";
 import Chart from "react-apexcharts";
 
 
-function RiskPieChart() {
+function RiskPieChart({data}) {
+
+    let riskT;
+    let riskS;
+    let riskR;
+    let noCase;
+    let none;
   
     let options = {
         
