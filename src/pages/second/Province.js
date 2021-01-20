@@ -13,10 +13,8 @@ function Province() {
   const [curHospital, setCurHospital] = useState({});
   const [curZona, setCurZona] = useState({});
   const [isLoading, setLoading] = useState(true);
-  const [data2, cekdata] = useState({});
-  const cekdata = async () => {
-    const fetchedProvinces = await getProvinces();
-  }
+
+
   const fetchData = async () => {
     const fetchedProvinces = await getProvinces();
     const fetchedHospital = await getProvinceHospital();
