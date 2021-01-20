@@ -1,15 +1,16 @@
 import React from "react";
 import { Table } from "reactstrap";
 
+
 function Data({ data }) {
     const renderTableData = () => {
         return data.map((index) => {
             return (
                 <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{Provinsi}</td>
+                    <td>{attribut.Provinsi}</td>
                     <td>
-                        {((Kasus_Meni + Kasus_Posi + Kasus_Sem).toString().replace(/\B(?=(\d{3})+(?!\d))/g), ".")}
+                        {((attribut.Kasus_Meni + attribut.Kasus_Posi + attribut.Kasus_Sem).toString().replace(/\B(?=(\d{3})+(?!\d))/g), ".")}
                     </td>
                 </tr>
             );

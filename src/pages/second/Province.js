@@ -13,6 +13,10 @@ function Province() {
   const [curHospital, setCurHospital] = useState({});
   const [curZona, setCurZona] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const [data2, cekdata] = useState({});
+  const cekdata = async () => {
+    const fetchedProvinces = await getProvinces();
+  }
   const fetchData = async () => {
     const fetchedProvinces = await getProvinces();
     const fetchedHospital = await getProvinceHospital();
@@ -70,7 +74,7 @@ function Province() {
     <>
       <Header />
       <Dropdown placeholder="Indonesia" data={province} onChange={changeProvince} />
-      <DataP data={data} />
+      <DataP data />
       <Footer />
     </>
   );
