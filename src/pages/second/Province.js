@@ -45,6 +45,7 @@ function Province() {
   const changeProvince = async (province) => {
     setLoading(true);
     const fetchedDataProvince = await getProvinces();
+
     var curProv = {};
     for (let prov in fetchedDataProvince) {
       if (fetchedDataProvince[prov].Provinsi == province) {

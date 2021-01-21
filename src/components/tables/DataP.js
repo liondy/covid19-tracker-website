@@ -6,18 +6,21 @@ import { getProvinces, getProvinceHospital, getZonaIndonesia } from "../../api/A
 function Data({ }) {
 
     const fetchedDataProvince = getProvinces();
-    console.log("cek");
 
-    const renderTableData = () => {
+
+    const renderTableData = async () => {
+        const fetchedDataProvince = await getProvinces();
         var i = 1;
-        console.log(fetchedDataProvince);
+        var temp = fetchedDataProvince[1];
+        console.log(temp);
         for (let prov in fetchedDataProvince) {
+            temp = fetchedDataProvince[prov];
             return (
                 <tr >
                     <td>{i++}</td>
-                    <td>{fetchedDataProvince[prov].Provinsi}</td>
+                    <td>{temp.Provinsi}</td>
                     <td>
-                        {((fetchedDataProvince[prov].Kasus_Meni + fetchedDataProvince[prov].Kasus_Posi + fetchedDataProvince[prov].Kasus_Sem).toString().replace(/\B(?=(\d{3})+(?!\d))/g), ".")}
+                        {((temp.Kasus_Meni + temp.Kasus_Posi + temp.Kasus_Sem).toString().replace(/\B(?=(\d{3})+(?!\d))/g), ".")}
                     </td>
                 </tr>);
         }
