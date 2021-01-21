@@ -36,7 +36,7 @@ function TopWorldGraph({
     XconfirmedData.push(confirmedData[i].Country);
     XrecoveredData.push(recoverData[i].Country);
     XdeathData.push(deathData[i].Country);
-    YconfirmedData.push(confirmedData[i].TotalConfirmed);
+    YconfirmedData.push(confirmedData[i].ConfirmedPercentage);
     YrecoverData.push(recoverData[i].RecoveredPercentage);
     YdeathData.push(deathData[i].DeathPercentage);
   }
@@ -83,6 +83,9 @@ function TopWorldGraph({
     yaxis: {
       labels: {
         minWidth: 40,
+        formatter: function (val, opts) {
+          return val.toFixed(2).toString().replace(".", ",") + "%";
+        },
       },
     },
     xaxis: {
@@ -90,7 +93,7 @@ function TopWorldGraph({
     },
     dataLabels: {
       formatter: function (val, opts) {
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return val.toFixed(2).toString().replace(".", ",") + "%";
       },
     },
   };
@@ -189,7 +192,7 @@ function TopWorldGraph({
     <div className="p-5">
       <Row className="mb-3">
         <Col md={10} sm={12}>
-          <h2>Negara dengan Kasus Terbanyak</h2>
+          <h2>Negara dengan Kasus Persentase dari Populasi Terbanyak</h2>
         </Col>
         <Col md={2} sm={12}>
           <Button
@@ -199,9 +202,13 @@ function TopWorldGraph({
           >
             Lihat Semua Urutan
           </Button>
-          <Modal isOpen={modalConfirmed} toggle={toggleConfirmed}>
+          <Modal
+            isOpen={modalConfirmed}
+            toggle={toggleConfirmed}
+            className="modal-lg"
+          >
             <ModalHeader toggle={toggleConfirmed} charCode="X">
-              <p>Negara dengan Kasus Terbanyak</p>
+              <p>Urutan Kasus Persentase dari Populasi Seluruh Negara</p>
             </ModalHeader>
             <ModalBody>
               <Data data={sortedConfirmedCountry} status="confirmed" />
@@ -226,7 +233,7 @@ function TopWorldGraph({
       </Row>
       <Row className="mb-3">
         <Col md={10} sm={12}>
-          <h2>Negara dengan Tingkat Kesembuhan Tertinggi</h2>
+          <h2>Negara dengan Persentase Tingkat Kesembuhan Tertinggi</h2>
         </Col>
         <Col md={2} sm={12}>
           <Button
@@ -238,7 +245,7 @@ function TopWorldGraph({
           </Button>
           <Modal isOpen={modalRecovered} toggle={toggleRecovered}>
             <ModalHeader toggle={toggleRecovered} charCode="X">
-              <p>Negara dengan Tingkat Kesembuhan Tertinggi</p>
+              <p>Urutan Persentase Tingkat Kesembuhan Seluruh Negara</p>
             </ModalHeader>
             <ModalBody>
               <Data data={sortedRecoveredCountry} status="recovered" />
@@ -263,7 +270,7 @@ function TopWorldGraph({
       </Row>
       <Row className="mb-3">
         <Col md={10} sm={12}>
-          <h2>Negara dengan Tingkat Kematian Tertinggi</h2>
+          <h2>Negara dengan Persentase Tingkat Kematian Tertinggi</h2>
         </Col>
         <Col md={2} sm={12}>
           <Button color="primary" onClick={toggleDeath} className="float-right">
@@ -271,7 +278,7 @@ function TopWorldGraph({
           </Button>
           <Modal isOpen={modalDeath} toggle={toggleDeath}>
             <ModalHeader toggle={toggleDeath} charCode="X">
-              <p>Negara dengan Tingkat Kematian Tertinggi</p>
+              <p>Urutan Persentase Tingkat Kematian Seluruh Negara</p>
             </ModalHeader>
             <ModalBody>
               <Data data={sortedDeathsCountry} status="deaths" />

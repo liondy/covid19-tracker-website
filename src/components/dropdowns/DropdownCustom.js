@@ -4,7 +4,7 @@ import { Dropdown } from "semantic-ui-react";
 function DropdownCustom({ placeholder, data, onChange }) {
   const [selected, setSelected] = useState(placeholder);
   const dataSource = [];
-  if (placeholder=="Dunia") {
+  if (placeholder === "Dunia") {
     dataSource.push({
       key: "WL",
       value: "world",
@@ -17,7 +17,7 @@ function DropdownCustom({ placeholder, data, onChange }) {
         text: data[i].Country,
       });
     }
-  } else if (placeholder=="Indonesia") {
+  } else if (placeholder === "Indonesia") {
     for (let i in data) {
       dataSource.push({
         key: data[i].Kode_Provi,

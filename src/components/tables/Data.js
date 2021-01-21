@@ -5,13 +5,27 @@ function Data({ data, status }) {
   const renderTableData = () => {
     if (status === "confirmed") {
       return data.map((negara, index) => {
-        const { Country, TotalConfirmed } = negara; //destructuring
+        const {
+          Country,
+          TotalConfirmed,
+          Population,
+          ConfirmedPercentage,
+        } = negara; //destructuring
         return (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{Country}</td>
             <td>
               {TotalConfirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
+            <td>
+              {Population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+            </td>
+            <td>{ConfirmedPercentage.toFixed(2).replace(".", ",")}%</td>
+            <td>
+              {ConfirmedPercentage.toFixed(2).replace(".", ",") > 70
+                ? "Ya"
+                : "Belum"}
             </td>
           </tr>
         );
@@ -69,6 +83,15 @@ function Data({ data, status }) {
           <th>No.</th>
           <th>Negara</th>
           <th>Total Konfirmasi</th>
+          {status === "confirmed" ? (
+            <>
+              <th>Jumlah Populasi</th>
+              <th>% dari Populasi</th>
+              <th>Herd Immunity?</th>
+            </>
+          ) : (
+            <></>
+          )}
           {status === "recovered" ? (
             <>
               <th>Total Sembuh</th>
