@@ -1,9 +1,11 @@
 import React from "react";
 import { Table } from "reactstrap";
 
+
 function Data({ data }) {
     const renderTableData = () => {
         return data.map((index) => {
+            const { Provinsi, Kasus_Meni, Kasus_Posi, Kasus_Sem } = index;
             return (
                 <tr key={index}>
                     <td>{index + 1}</td>
