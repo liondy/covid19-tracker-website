@@ -1,43 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table } from "reactstrap";
-import { getProvinces, getProvinceHospital, getZonaIndonesia } from "../../api/Api";
 
-
-function Data({ }) {
-
-    const fetchedDataProvince = getProvinces();
-
-
-    const renderTableData = async () => {
-        const fetchedDataProvince = await getProvinces();
-        var i = 1;
-        var temp = fetchedDataProvince[1];
-        for (let prov in fetchedDataProvince) {
-            temp = fetchedDataProvince[prov];
-            var datasource = [];
-            datasource.push({
-                Provinsi: temp.Provinsi,
-                Positif: temp.Kasus_Posi,
-                Sembuh: temp.Kasus_Semb,
-                Meninggal: temp.Kasus_Meni
-            });
-            console.log(datasource[0]["Provinsi"]);
-
-            return (
-                <tr >
-                    <td>{datasource[0]['Provinsi']}</td>
-                    <td>
-                        {((datasource[0]['Positif'] + datasource[0]['Sembuh'] + datasource[0]['Meninggal']).toString().replace(/\B(?=(\d{3})+(?!\d))/g), ".")}
-                    </td>
-                </tr>);
-        }
+function Data({ data, status }) {
+    const renderTableData = () => {
+    	if(status){
+    		console.log(data);
+	        return data.map((provinsi, index) => {
+	            const {
+	                Kasus_Meni,
+	                Kasus_Posi,
+	                Kasus_Semb,
+	                Provinsi,
+	            } = provinsi;
+	            return (
+	                <tr key={index}>
+	                    <td>{index + 1}</td>
+	                    <td>{Provinsi}</td>
+	                    <td>
+	                        {((Kasus_Meni + Kasus_Posi + Kasus_Semb).toString().replace(/\B(?=(\d{3})+(?!\d))/g), ".")}
+	                    </td>
+	                </tr>
+	            );
+	        });
+		}
     }
     return (
         <Table hover>
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Negara</th>
+                    <th>Provinsi</th>
                     <th>Total Konfirmasi</th>
                 </tr>
             </thead>

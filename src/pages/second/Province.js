@@ -7,9 +7,9 @@ import DataP from "../../components/tables/DataP";
 import Dropdown from "../../components/dropdowns/DropdownCustom";
 
 function Province() {
-  const [province, setProvince] = useState({});
+  const [province, setProvince] = useState([]);
   const [curGeom, setCurGeom] = useState({});
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [curHospital, setCurHospital] = useState({});
   const [curZona, setCurZona] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -73,7 +73,7 @@ function Province() {
     <>
       <Header />
       <Dropdown placeholder="Indonesia" data={province} onChange={changeProvince} />
-      <DataP data />
+      <DataP data={province} status={isLoading}/>
       <Footer />
     </>
   );
