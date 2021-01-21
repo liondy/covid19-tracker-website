@@ -12,13 +12,15 @@ function Data({ data, status }) {
 	                Kasus_Semb,
 	                Provinsi,
 	            } = provinsi;
+	            var jml = (Kasus_Semb+Kasus_Posi+Kasus_Meni).toString();
 	            return (
 	                <tr key={index}>
 	                    <td>{index + 1}</td>
 	                    <td>{Provinsi}</td>
-	                    <td>
-	                        {((Kasus_Meni + Kasus_Posi + Kasus_Semb).toString().replace(/\B(?=(\d{3})+(?!\d))/g), ".")}
-	                    </td>
+	                    <td>{jml}</td>
+	                    <td>{Kasus_Posi}</td>
+	                    <td>{Kasus_Semb}</td>
+	                    <td>{Kasus_Meni}</td>
 	                </tr>
 	            );
 	        });
@@ -30,7 +32,10 @@ function Data({ data, status }) {
                 <tr>
                     <th>No.</th>
                     <th>Provinsi</th>
-                    <th>Total Konfirmasi</th>
+                    <th>Jumlah Kasus</th>
+                    <th>Positif</th>
+                    <th>Sembuh</th>
+                    <th>Meninggal</th>
                 </tr>
             </thead>
             <tbody>{renderTableData()}</tbody>
