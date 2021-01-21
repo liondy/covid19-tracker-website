@@ -4,7 +4,7 @@ import Footer from "../../components/layout/footer/Footer";
 import CountryPicker from "../../components/dropdowns/DropdownCustom";
 import DateFilter from "../../components/RangeFilter/DateFilter";
 import Status from "../../components/data-status/Status";
-import { getSummaryData, getCountriesData } from "../../api/Api";
+import { getSummaryData, getCountriesData, getPopulation } from "../../api/Api";
 import GraphStatus from "../../components/graphs/GraphStatus";
 import TopWorldGraph from "../../components/graphs/TopWorldGraph";
 
@@ -41,18 +41,19 @@ function Country() {
   ];
   const fetchSummaryData = async () => {
     const fetchedData = await getSummaryData();
+    const fetchedPop = await getPopulation();
     setData(fetchedData.Global);
     setCountries(fetchedData.Countries);
     setSummaryData(fetchedData);
     setWorld(true);
     setUpdated(fetchedData.Date);
-    sortCountry([...fetchedData.Countries]);
+    sortCountry([...fetchedData.Countries], [...fetchedPop]);
     setLoadingData(false);
   };
-  const sortCountry = (countries) => {
-    let newCountries = countPercentage([...countries]);
+  const sortCountry = (countries, populations) => {
+    let newCountries = countPercentage([...countries], [...populations]);
     let sortByConfirmed = [...newCountries];
-    sortByConfirmed.sort(sortCountryBasedOn("TotalConfirmed"));
+    sortByConfirmed.sort(sortCountryBasedOn("ConfirmedPercentage"));
     setConfirmedSorted(sortByConfirmed);
     let sortByRecovered = [...newCountries];
     sortByRecovered.sort(sortCountryBasedOn("RecoveredPercentage"));
@@ -61,19 +62,27 @@ function Country() {
     sortByDeaths.sort(sortCountryBasedOn("DeathPercentage"));
     setDeathsSorted(sortByDeaths);
   };
-  const countPercentage = (countries) => {
+  const countPercentage = (countries, populations) => {
     let countriesToBeSet = [...countries];
-    countriesToBeSet.forEach((county) => {
-      if (county.TotalConfirmed === 0) {
-        county.RecoveredPercentage = 0.0;
-        county.DeathPercentage = 0.0;
+    for (let i = 0; i < countriesToBeSet.length; i++) {
+      if (countriesToBeSet[i].TotalConfirmed === 0) {
+        countriesToBeSet[i].RecoveredPercentage = 0.0;
+        countriesToBeSet[i].DeathPercentage = 0.0;
       } else {
-        county.RecoveredPercentage =
-          (county.TotalRecovered / county.TotalConfirmed) * 100;
-        county.DeathPercentage =
-          (county.TotalDeaths / county.TotalConfirmed) * 100;
+        countriesToBeSet[i].ConfirmedPercentage =
+          (countriesToBeSet[i].TotalConfirmed / populations[i].Population) *
+          100;
+        countriesToBeSet[i].RecoveredPercentage =
+          (countriesToBeSet[i].TotalRecovered /
+            countriesToBeSet[i].TotalConfirmed) *
+          100;
+        countriesToBeSet[i].DeathPercentage =
+          (countriesToBeSet[i].TotalDeaths /
+            countriesToBeSet[i].TotalConfirmed) *
+          100;
       }
-    });
+      countriesToBeSet[i].Population = populations[i].Population;
+    }
     return countriesToBeSet;
   };
   const sortCountryBasedOn = (property) => {
@@ -181,7 +190,11 @@ function Country() {
     <div>
       <Header />
       <div className="text-center">
-        <CountryPicker placeholder="Dunia" data={countries} onChange={changeCountry} />
+        <CountryPicker
+          placeholder="Dunia"
+          data={countries}
+          onChange={changeCountry}
+        />
         <DateFilter
           country={curCountry}
           isLoading={isLoadingDate}
