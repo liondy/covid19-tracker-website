@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table } from "reactstrap";
+import { getProvinces, getProvinceHospital, getZonaIndonesia } from "../../api/Api";
 
 
-function Data({ data }) {
+function Data({ }) {
+
+    const fetchedDataProvince = getProvinces();
+    console.log("cek");
+
     const renderTableData = () => {
-        return data.map((index) => {
-            const { Provinsi, Kasus_Meni, Kasus_Posi, Kasus_Sem } = index;
+        var i = 1;
+        console.log(fetchedDataProvince);
+        for (let prov in fetchedDataProvince) {
             return (
-                <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{Provinsi}</td>
+                <tr >
+                    <td>{i++}</td>
+                    <td>{fetchedDataProvince[prov].Provinsi}</td>
                     <td>
-                        {((Kasus_Meni + Kasus_Posi + Kasus_Sem).toString().replace(/\B(?=(\d{3})+(?!\d))/g), ".")}
+                        {((fetchedDataProvince[prov].Kasus_Meni + fetchedDataProvince[prov].Kasus_Posi + fetchedDataProvince[prov].Kasus_Sem).toString().replace(/\B(?=(\d{3})+(?!\d))/g), ".")}
                     </td>
-                </tr>
-            );
-        });
+                </tr>);
+        }
     }
     return (
         <Table hover>
