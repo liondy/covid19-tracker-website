@@ -17,6 +17,7 @@ function Province() {
   const [RSLoading, setRSLoading] = useState(true);
 
   const fetchData = async () => {
+    setLoading(true);
     const fetchedProvinces = await getProvinces();
     fetchedProvinces.sort(sortData("Provinsi"));
 
@@ -29,6 +30,7 @@ function Province() {
 
     setProvince(fetchedProvinces);
     setData(temp);
+    setLoading(false);
   };
   const sortData = (property) => {
     return function (a, b) {
@@ -40,17 +42,18 @@ function Province() {
   const changeProvince = async (province) => {
     setLoading(true);
     const fetchedDataProvince = await getProvinces();
-    let curProv = {};
     if (province === "Indonesia") {
       setIndo(true);
+      let provs = [];
       for (let prov in fetchedDataProvince) {
         if (fetchedDataProvince[prov].Provinsi !== province) {
-          curProv = fetchedDataProvince[prov];
+          provs.push(fetchedDataProvince[prov]);
         }
       }
-      setData(curProv);
+      setData(provs);
     } else {
       setIndo(false);
+      let curProv = {};
       for (let prov in fetchedDataProvince) {
         if (fetchedDataProvince[prov].Provinsi === province) {
           curProv = fetchedDataProvince[prov];

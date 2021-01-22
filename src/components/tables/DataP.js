@@ -3,7 +3,7 @@ import { Table } from "reactstrap";
 
 function Data({ data, status }) {
   const renderTableData = () => {
-    if (status) {
+    if (!status) {
       return data.map((provinsi, index) => {
         const { Kasus_Meni, Kasus_Posi, Kasus_Semb, Provinsi } = provinsi;
         var jml = Kasus_Semb + Kasus_Posi + Kasus_Meni;
