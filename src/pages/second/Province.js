@@ -4,6 +4,7 @@ import Footer from "../../components/layout/footer/Footer";
 import { getProvinces, getProvinceHospital, getZonaIndonesia } from "../../api/Api";
 import React, { useState, useEffect } from "react";
 import DataP from "../../components/tables/DataP";
+import DataRS from "../../components/tables/DataRS";
 import Dropdown from "../../components/dropdowns/DropdownCustom";
 import StatusP from "../../components/data-status/StatusP";
 
@@ -11,17 +12,16 @@ function Province() {
   const [province, setProvince] = useState([]);
   const [curGeom, setCurGeom] = useState({});
   const [data, setData] = useState([]);
-  const [curHospital, setCurHospital] = useState({});
+  const [curHospital, setCurHospital] = useState([]);
   const [curZona, setCurZona] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isIndo, setIndo] = useState(true);
+  const [RSLoading, setRSLoading] = useState(true);
 
 
   const fetchData = async () => {
     const fetchedProvinces = await getProvinces();
-    const fetchedHospital = await getProvinceHospital();
     const fetchedZona = await getZonaIndonesia();
-    fetchedHospital.sort(sortData("province"));
     fetchedProvinces.sort(sortData("Provinsi"));
 
     const temp = [];
@@ -33,7 +33,6 @@ function Province() {
 
     setProvince(fetchedProvinces);
     setData(temp);
-    setCurHospital(fetchedHospital);
     setCurZona(fetchedZona);
 
     // console.log("fetchedProvinces:");
@@ -74,6 +73,7 @@ function Province() {
         }
       }
       setData(curProv);
+      setRSLoading(true);
       const fetchedDataHospital = await getProvinceHospital();
       const hospital = [];
       for (let prov in fetchedDataHospital) {
@@ -83,24 +83,28 @@ function Province() {
           hospital.push(temp);
         }
       }
+      setCurHospital(hospital);
+      setRSLoading(false);
     }
-    
     setLoading(false);
   };
   useEffect(() => {
     fetchData();
   }, []);
   return (
-    <>
+    <div>
       <Header />
       <Dropdown placeholder="Indonesia" data={province} onChange={changeProvince} />
       {isIndo==true ? (
         <DataP data={data} status={isLoading}/>
       ):(
-        <StatusP isLoading={isLoading} data={data}/>
+        <div>
+          <StatusP isLoading={isLoading} data={data}/>
+          <DataRS data={curHospital} status={RSLoading}/>
+        </div>
       )}
       <Footer />
-    </>
+    </div>
   );
 }
 

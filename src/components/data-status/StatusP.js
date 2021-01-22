@@ -6,7 +6,6 @@ function Status({ data, isLoading}) {
   if (isLoading) {
     return <div className="mt-3">Loading...</div>;
   }
-  let namaProvinsi = data.Provinsi;
   let positif = data.Kasus_Posi;
   let sembuh = data.Kasus_Semb;
   let meninggal = data.Kasus_Meni;
@@ -22,7 +21,7 @@ function Status({ data, isLoading}) {
           </Row>
         </Col>
         <Col md={1}></Col>
-        <Col md={2} sm={12} className="mb-3">
+        <Col md={3} sm={12} className="mb-3">
           <Row className="justify-content-center border-top border-left border-right border-primary text-primary p-4 rounded-top font">
             <> &nbsp; &nbsp; {sembuh} ({((sembuh/positif)*100).toFixed(2)}%)</>
           </Row>
