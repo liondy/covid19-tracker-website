@@ -77,7 +77,7 @@ function Data({ data, status }) {
     }
   };
   return (
-    <Table hover>
+    <Table hover responsive>
       <thead>
         <tr>
           <th>No.</th>

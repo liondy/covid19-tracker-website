@@ -29,7 +29,7 @@ function DropdownCustom({ placeholder, data, onChange }) {
     console.log("dropdown error");
   }
   return (
-    <div className="mt-5">
+    <div className="mt-5 text-center">
       <Dropdown
         placeholder={placeholder}
         defaultValue={selected}
