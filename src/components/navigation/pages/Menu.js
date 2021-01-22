@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import "./Menu.css";
 import logo from "../../logo/covid.svg";
-import { NavLink, useLocation } from "react-router-dom";
-import { Nav, Navbar, NavbarBrand, Collapse, NavbarToggler } from "reactstrap";
+import { NavLink as Link, useLocation } from "react-router-dom";
+import {
+  Nav,
+  Navbar,
+  NavLink,
+  NavbarBrand,
+  Collapse,
+  NavbarToggler,
+} from "reactstrap";
 
 function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +59,7 @@ function Menu() {
         key={curr.key}
         className="ml-5 p-2 mb-2 HomeMenu"
         to={curr.path}
+        tag={Link}
         style={curr.style}
       >
         {curr.menu}
@@ -60,7 +68,7 @@ function Menu() {
   });
   return (
     <Navbar className="nav" dark expand="md">
-      <NavbarBrand href="/" className="p-2">
+      <NavbarBrand href="/" to="/" tag={Link} className="p-2">
         <img src={logo} alt="logo" className="img-fluid" width="50%" />
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />
