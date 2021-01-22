@@ -1,34 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table } from "reactstrap";
-import { getProvinces, getProvinceHospital, getZonaIndonesia } from "../../api/Api";
 
-
-function Data({ }) {
-
-    const fetchedDataProvince = getProvinces();
-    console.log("cek");
-
+function Data({ data, status }) {
     const renderTableData = () => {
-        var i = 1;
-        console.log(fetchedDataProvince);
-        for (let prov in fetchedDataProvince) {
-            return (
-                <tr >
-                    <td>{i++}</td>
-                    <td>{fetchedDataProvince[prov].Provinsi}</td>
-                    <td>
-                        {((fetchedDataProvince[prov].Kasus_Meni + fetchedDataProvince[prov].Kasus_Posi + fetchedDataProvince[prov].Kasus_Sem).toString().replace(/\B(?=(\d{3})+(?!\d))/g), ".")}
-                    </td>
-                </tr>);
-        }
+    	if(status){
+    		console.log(data);
+	        return data.map((provinsi, index) => {
+	            const {
+	                Kasus_Meni,
+	                Kasus_Posi,
+	                Kasus_Semb,
+	                Provinsi,
+	            } = provinsi;
+	            var jml = (Kasus_Semb+Kasus_Posi+Kasus_Meni).toString();
+	            return (
+	                <tr key={index}>
+	                    <td>{index + 1}</td>
+	                    <td>{Provinsi}</td>
+	                    <td>{jml}</td>
+	                    <td>{Kasus_Posi}</td>
+	                    <td>{Kasus_Semb}</td>
+	                    <td>{Kasus_Meni}</td>
+	                </tr>
+	            );
+	        });
+		}
     }
     return (
         <Table hover>
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Negara</th>
-                    <th>Total Konfirmasi</th>
+                    <th>Provinsi</th>
+                    <th>Jumlah Kasus</th>
+                    <th>Positif</th>
+                    <th>Sembuh</th>
+                    <th>Meninggal</th>
                 </tr>
             </thead>
             <tbody>{renderTableData()}</tbody>
