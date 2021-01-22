@@ -34,6 +34,8 @@ async function getData() {
       country = "Macao";
     } else if (country === "Macedonia, Republic of") {
       country = "North Macedonia";
+    } else if (country === "Micronesia, Federated States of") {
+      country = "Micronesia";
     } else if (country === "Palestinian Territory") {
       country = "State of Palestine";
     } else if (country === "Republic of Kosovo") {
