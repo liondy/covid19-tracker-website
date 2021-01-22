@@ -64,7 +64,10 @@ function Country() {
   };
   const countPercentage = (countries, populations) => {
     let countriesToBeSet = [...countries];
+    console.log(populations);
     for (let i = 0; i < countriesToBeSet.length; i++) {
+      console.log(countriesToBeSet[i]);
+      console.log(populations[i]);
       if (countriesToBeSet[i].TotalConfirmed === 0) {
         countriesToBeSet[i].RecoveredPercentage = 0.0;
         countriesToBeSet[i].DeathPercentage = 0.0;
