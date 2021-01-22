@@ -4,7 +4,6 @@ import { Table } from "reactstrap";
 function Data({ data, status }) {
     const renderTableData = () => {
     	if(status){
-    		console.log(data);
 	        return data.map((provinsi, index) => {
 	            const {
 	                Kasus_Meni,
@@ -12,7 +11,7 @@ function Data({ data, status }) {
 	                Kasus_Semb,
 	                Provinsi,
 	            } = provinsi;
-	            var jml = (Kasus_Semb+Kasus_Posi+Kasus_Meni).toString();
+	            var jml = Kasus_Semb+Kasus_Posi+Kasus_Meni;
 	            return (
 	                <tr key={index}>
 	                    <td>{index + 1}</td>

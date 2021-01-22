@@ -5,6 +5,7 @@ import { getProvinces, getProvinceHospital, getZonaIndonesia } from "../../api/A
 import React, { useState, useEffect } from "react";
 import DataP from "../../components/tables/DataP";
 import Dropdown from "../../components/dropdowns/DropdownCustom";
+import StatusP from "../../components/data-status/StatusP";
 
 function Province() {
   const [province, setProvince] = useState([]);
@@ -13,6 +14,7 @@ function Province() {
   const [curHospital, setCurHospital] = useState({});
   const [curZona, setCurZona] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const [isIndo, setIndo] = useState(true);
 
 
   const fetchData = async () => {
@@ -22,12 +24,20 @@ function Province() {
     fetchedHospital.sort(sortData("province"));
     fetchedProvinces.sort(sortData("Provinsi"));
 
+    const temp = [];
+    for(let prov in fetchedProvinces){
+      if(fetchedProvinces[prov].Provinsi!="Indonesia"){
+        temp.push(fetchedProvinces[prov]);
+      }
+    }
+
     setProvince(fetchedProvinces);
+    setData(temp);
     setCurHospital(fetchedHospital);
     setCurZona(fetchedZona);
 
-    console.log("fetchedProvinces:");
-    console.log(fetchedProvinces);
+    // console.log("fetchedProvinces:");
+    // console.log(fetchedProvinces);
 
     // console.log("fetchedHospital:");
     // console.log(fetchedHospital);
@@ -45,25 +55,36 @@ function Province() {
   const changeProvince = async (province) => {
     setLoading(true);
     const fetchedDataProvince = await getProvinces();
-
-    var curProv = {};
-    for (let prov in fetchedDataProvince) {
-      if (fetchedDataProvince[prov].Provinsi == province) {
-        curProv = fetchedDataProvince[prov];
-        break;
+    if(province=="Indonesia"){
+      setIndo(true);
+      var curProv = {};
+      for (let prov in fetchedDataProvince) {
+        if (fetchedDataProvince[prov].Provinsi != province) {
+          curProv = fetchedDataProvince[prov];
+        }
+      }
+      setData(curProv);
+    } else {
+      setIndo(false);
+      var curProv = {};
+      for (let prov in fetchedDataProvince) {
+        if (fetchedDataProvince[prov].Provinsi == province) {
+          curProv = fetchedDataProvince[prov];
+          break;
+        }
+      }
+      setData(curProv);
+      const fetchedDataHospital = await getProvinceHospital();
+      const hospital = [];
+      for (let prov in fetchedDataHospital) {
+        if (fetchedDataHospital[prov].region.toLowerCase().includes(province.toLowerCase())) {
+          var temp = fetchedDataHospital[prov];
+          temp.province = province;
+          hospital.push(temp);
+        }
       }
     }
-    setData(curProv);
-    const fetchedDataHospital = await getProvinceHospital();
-    const hospital = [];
-    for (let prov in fetchedDataHospital) {
-      if (fetchedDataHospital[prov].region.toLowerCase().includes(province.toLowerCase())) {
-        var temp = fetchedDataHospital[prov];
-        temp.province = province;
-        hospital.push(temp);
-      }
-    }
-    console.log(hospital);
+    
     setLoading(false);
   };
   useEffect(() => {
@@ -73,7 +94,11 @@ function Province() {
     <>
       <Header />
       <Dropdown placeholder="Indonesia" data={province} onChange={changeProvince} />
-      <DataP data={province} status={isLoading}/>
+      {isIndo==true ? (
+        <DataP data={data} status={isLoading}/>
+      ):(
+        <StatusP isLoading={isLoading} data={data}/>
+      )}
       <Footer />
     </>
   );
