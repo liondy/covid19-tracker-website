@@ -23,22 +23,24 @@ function TopWorldGraph({
   if (isLoading) {
     return <div className="text-center mt-3">Loading...</div>;
   }
-  let confirmedData = sortedConfirmedCountry.slice(0, 10);
-  let recoverData = sortedRecoveredCountry.slice(0, 10);
-  let deathData = sortedDeathsCountry.slice(0, 10);
   let XconfirmedData = [];
   let XrecoveredData = [];
   let XdeathData = [];
   let YconfirmedData = [];
   let YrecoverData = [];
   let YdeathData = [];
-  for (let i = 0; i < 10; i++) {
-    XconfirmedData.push(confirmedData[i].Country);
-    XrecoveredData.push(recoverData[i].Country);
-    XdeathData.push(deathData[i].Country);
-    YconfirmedData.push(confirmedData[i].ConfirmedPercentage);
-    YrecoverData.push(recoverData[i].RecoveredPercentage);
-    YdeathData.push(deathData[i].DeathPercentage);
+  if (sortedConfirmedCountry.length !== 0) {
+    let confirmedData = sortedConfirmedCountry.slice(0, 10);
+    let recoverData = sortedRecoveredCountry.slice(0, 10);
+    let deathData = sortedDeathsCountry.slice(0, 10);
+    for (let i = 0; i < 10; i++) {
+      XconfirmedData.push(confirmedData[i].Country);
+      XrecoveredData.push(recoverData[i].Country);
+      XdeathData.push(deathData[i].Country);
+      YconfirmedData.push(confirmedData[i].ConfirmedPercentage);
+      YrecoverData.push(recoverData[i].RecoveredPercentage);
+      YdeathData.push(deathData[i].DeathPercentage);
+    }
   }
   let yConfirmedData = [
     {

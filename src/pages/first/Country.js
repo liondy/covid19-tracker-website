@@ -40,15 +40,27 @@ function Country() {
     "Desember",
   ];
   const fetchSummaryData = async () => {
-    const fetchedData = await getSummaryData();
+    // const fetchedData = await getSummaryData();
+    const fetchedData = undefined;
     const fetchedPop = await getPopulation();
-    setData(fetchedData.Global);
-    setCountries(fetchedData.Countries);
-    setSummaryData(fetchedData);
-    setWorld(true);
-    setUpdated(fetchedData.Date);
-    sortCountry([...fetchedData.Countries], [...fetchedPop]);
-    setLoadingData(false);
+    if (fetchedData === undefined) {
+      setData({});
+      setLoadingData(false);
+      return (
+        <div className="mt-3 p-5">
+          Maaf, gagal mengambil semua data. Silahkan coba sesaat lagi atau
+          mengganti dengan fitur lain
+        </div>
+      );
+    } else {
+      setData(fetchedData.Global);
+      setCountries(fetchedData.Countries);
+      setSummaryData(fetchedData);
+      setWorld(true);
+      setUpdated(fetchedData.Date);
+      sortCountry([...fetchedData.Countries], [...fetchedPop]);
+      setLoadingData(false);
+    }
   };
   const sortCountry = (countries, populations) => {
     let newCountries = countPercentage([...countries], [...populations]);
@@ -129,9 +141,7 @@ function Country() {
       setCurSlug(slug);
       setCurCountry(country);
       const fetchedData = await getCountriesData(slug);
-      console.log(fetchedData);
       if (fetchedData === undefined) {
-        console.log("masuk");
         setData([]);
         setLoadingData(false);
       } else {
