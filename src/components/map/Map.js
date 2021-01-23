@@ -5,6 +5,7 @@ import highchartsMap from "highcharts/modules/map";
 import HighchartsReact from "highcharts-react-official";
 import proj4 from "proj4";
 import mapDataID from "@highcharts/map-collection/countries/id/id-all.geo.json";
+import { Container } from "reactstrap";
 highchartsMap(Highcharts);
 
 function Map({
@@ -81,6 +82,21 @@ function Map({
         cursor: "pointer",
       },
     ],
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 500,
+          },
+          // Make the labels less space demanding on mobile
+          chartOptions: {
+            legend: {
+              enabled: false,
+            },
+          },
+        },
+      ],
+    },
   };
   if (isLoading) {
     return (
@@ -101,13 +117,13 @@ function Map({
     );
   }
   return (
-    <div>
+    <Container fluid>
       <HighchartsReact
         highcharts={Highcharts}
         options={options}
         constructorType={"mapChart"}
       />
-    </div>
+    </Container>
   );
 }
 

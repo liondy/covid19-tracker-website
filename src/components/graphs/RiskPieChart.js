@@ -1,5 +1,6 @@
 import React from "react";
 import Chart from "react-apexcharts";
+import { Container, Row, Col } from "reactstrap";
 
 function RiskPieChart({ zoneColor }) {
   let options = {
@@ -31,17 +32,19 @@ function RiskPieChart({ zoneColor }) {
   };
 
   return (
-    <div class="risk" style={{ paddingLeft: "35%" }}>
-      <span></span>
-      <h2>Persentase Zona Resiko di Indonesia</h2>
-      <span></span>
-      <Chart
-        options={options}
-        series={[zoneColor[0], zoneColor[1], zoneColor[2], zoneColor[3]]}
-        width={500}
-        type="pie"
-      />
-    </div>
+    <Container fluid>
+      <Row className="justify-content-center mt-5 p-3">
+        <h2>Persentase Zona Resiko di Indonesia</h2>
+      </Row>
+      <Row className="justify-content-center mb-3">
+        <Chart
+          options={options}
+          series={[zoneColor[0], zoneColor[1], zoneColor[2], zoneColor[3]]}
+          width={500}
+          type="pie"
+        />
+      </Row>
+    </Container>
   );
 }
 
