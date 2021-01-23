@@ -1,4 +1,5 @@
 import { Col, Container, Row } from "reactstrap";
+import ReactLoading from "react-loading";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 
 function DateFilter({
@@ -14,7 +15,17 @@ function DateFilter({
     return <div></div>;
   }
   if (isLoading) {
-    return <div className="mt-3">Loading...</div>;
+    return (
+      <div className="d-flex justify-content-center">
+        <ReactLoading
+          type={"spinningBubbles"}
+          color={"#2d6187"}
+          height={"10%"}
+          width={"10%"}
+          className="mt-3 p-5"
+        />
+      </div>
+    );
   }
   return (
     <Container className="mt-3" fluid>

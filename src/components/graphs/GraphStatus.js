@@ -1,9 +1,25 @@
 import React from "react";
 import Chart from "react-apexcharts";
+import ReactLoading from "react-loading";
 
 function GraphStatus({ isLoading, data, curCountry }) {
   if (isLoading) {
-    return <div className="text-center mt-3">Loading...</div>;
+    return (
+      <>
+        <div className="d-flex justify-content-center">
+          <ReactLoading
+            type={"spinningBubbles"}
+            color={"#2d6187"}
+            height={"10%"}
+            width={"10%"}
+            className="mt-3 p-5"
+          />
+        </div>
+        <div className="d-flex justify-content-center">
+          <h5>Memuat Grafik...</h5>
+        </div>
+      </>
+    );
   }
   let xData = [];
   let activeData = [];

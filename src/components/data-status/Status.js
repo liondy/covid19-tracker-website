@@ -2,17 +2,41 @@ import "./Status.css";
 import React, { useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import CountUp from "react-countup";
+import ReactLoading from "react-loading";
 
 function Status({ isLoading, isWorld, same, data, lastUpdate }) {
   const [duration] = useState(2.5);
   if (isLoading) {
-    return <div className="mt-3">Loading...</div>;
+    return (
+      <>
+        <div className="d-flex justify-content-center">
+          <ReactLoading
+            type={"spinningBubbles"}
+            color={"#2d6187"}
+            height={"10%"}
+            width={"10%"}
+            className="mt-3 p-5"
+          />
+        </div>
+        <div className="d-flex justify-content-center">
+          <h5>Tunggu Sebentar, Sedang Mengambil Data 😁 ✌️</h5>
+        </div>
+      </>
+    );
   }
   let confirmed;
   let active;
   let recovered;
   let deaths;
   if (isWorld) {
+    if (!data) {
+      return (
+        <div className="mt-3 p-5">
+          Maaf, gagal mengambil semua data. Silahkan coba sesaat lagi atau
+          mengganti dengan fitur lain
+        </div>
+      );
+    }
     confirmed = data.TotalConfirmed;
     recovered = data.TotalRecovered;
     deaths = data.TotalDeaths;

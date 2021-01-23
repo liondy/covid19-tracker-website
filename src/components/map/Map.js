@@ -1,4 +1,5 @@
 import React from "react";
+import ReactLoading from "react-loading";
 import Highcharts from "highcharts";
 import highchartsMap from "highcharts/modules/map";
 import HighchartsReact from "highcharts-react-official";
@@ -82,7 +83,22 @@ function Map({
     ],
   };
   if (isLoading) {
-    return <div className="mt-3 text-center mb-3">Loading...</div>;
+    return (
+      <>
+        <div className="d-flex justify-content-center">
+          <ReactLoading
+            type={"spinningBubbles"}
+            color={"#2d6187"}
+            height={"10%"}
+            width={"10%"}
+            className="mt-3 p-5"
+          />
+        </div>
+        <div className="d-flex justify-content-center">
+          <h5>Memuat Zona</h5>
+        </div>
+      </>
+    );
   }
   return (
     <div>

@@ -10,6 +10,7 @@ import {
   ModalFooter,
 } from "reactstrap";
 import Data from "../tables/Data";
+import ReactLoading from "react-loading";
 
 function TopWorldGraph({
   isLoading,
@@ -21,7 +22,22 @@ function TopWorldGraph({
   const [modalRecovered, setModalRecovered] = useState(false);
   const [modalDeath, setModalDeath] = useState(false);
   if (isLoading) {
-    return <div className="text-center mt-3">Loading...</div>;
+    return (
+      <>
+        <div className="d-flex justify-content-center">
+          <ReactLoading
+            type={"spinningBubbles"}
+            color={"#2d6187"}
+            height={"10%"}
+            width={"10%"}
+            className="mt-3 p-5"
+          />
+        </div>
+        <div className="d-flex justify-content-center">
+          <h5>Memuat Grafik</h5>
+        </div>
+      </>
+    );
   }
   let XconfirmedData = [];
   let XrecoveredData = [];

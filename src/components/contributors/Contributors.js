@@ -1,8 +1,20 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
+import ReactLoading from "react-loading";
 
 const Contributors = ({ isLoading, data }) => {
-  if (isLoading) return <div className="mt-3 p-5 text-center">Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="d-flex justify-content-center">
+        <ReactLoading
+          type={"spinningBubbles"}
+          color={"#2d6187"}
+          height={"10%"}
+          width={"10%"}
+          className="mt-3 p-5"
+        />
+      </div>
+    );
   const renderContributors = () => {
     return data.map((contributor, index) => {
       const { image, name, link } = contributor; //destructuring

@@ -40,10 +40,9 @@ function Country() {
     "Desember",
   ];
   const fetchSummaryData = async () => {
-    // const fetchedData = await getSummaryData();
-    const fetchedData = undefined;
+    const fetchedData = await getSummaryData();
     const fetchedPop = await getPopulation();
-    if (fetchedData === undefined) {
+    if (fetchedData.Global === undefined) {
       setData({});
       setLoadingData(false);
       return (

@@ -1,10 +1,26 @@
 import "./Status.css";
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
+import ReactLoading from "react-loading";
 
-function Status({ data, isLoading}) {
+function Status({ data, isLoading }) {
   if (isLoading) {
-    return <div className="mt-3">Loading...</div>;
+    return (
+      <>
+        <div className="d-flex justify-content-center">
+          <ReactLoading
+            type={"spinningBubbles"}
+            color={"#2d6187"}
+            height={"10%"}
+            width={"10%"}
+            className="mt-3 p-5"
+          />
+        </div>
+        <div className="d-flex justify-content-center">
+          <h5>Tunggu Sebentar, Sedang Mengambil Data 😁 ✌️</h5>
+        </div>
+      </>
+    );
   }
   let positif = data.Kasus_Posi;
   let sembuh = data.Kasus_Semb;
@@ -23,7 +39,10 @@ function Status({ data, isLoading}) {
         <Col md={1}></Col>
         <Col md={3} sm={12} className="mb-3">
           <Row className="justify-content-center border-top border-left border-right border-primary text-primary p-4 rounded-top font">
-            <> &nbsp; &nbsp; {sembuh} ({((sembuh/positif)*100).toFixed(2)}%)</>
+            <>
+              {" "}
+              &nbsp; &nbsp; {sembuh} ({((sembuh / positif) * 100).toFixed(2)}%)
+            </>
           </Row>
           <Row className="justify-content-center border-bottom border-left border-right border-primary text-white p-4 bg-primary rounded-bottom font font-bold">
             Kasus Sembuh
@@ -32,7 +51,11 @@ function Status({ data, isLoading}) {
         <Col md={1}></Col>
         <Col md={3} sm={12} className="mb-3">
           <Row className="justify-content-center border-top border-left border-right border-success text-success p-4 rounded-top font">
-            <> &nbsp; &nbsp; {meninggal} ({((meninggal/positif)*100).toFixed(2)}%)</>
+            <>
+              {" "}
+              &nbsp; &nbsp; {meninggal} (
+              {((meninggal / positif) * 100).toFixed(2)}%)
+            </>
           </Row>
           <Row className="justify-content-center border-bottom border-left border-right border-success text-white p-4 bg-success rounded-bottom font font-bold">
             Kasus Meninggal
